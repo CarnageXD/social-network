@@ -1,0 +1,13 @@
+.freqFriends {
+    margin: 1rem;
+}
+
+.circleAvatar {
+    border-radius: 50%;
+    width: 4rem;
+}
+
+.friendName {
+    text-align: center;
+    color: white;
+}

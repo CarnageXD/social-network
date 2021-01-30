@@ -1,0 +1,29 @@
+.chat {
+    color: white;
+    display: flex;
+    padding: 1rem;  
+    background-color:#0476b8;
+    align-items: center;    
+    cursor: pointer;
+}
+
+.chat:hover {
+    background: #2993da;
+}
+
+.circleAvatar {
+    width: 4.5rem;
+    padding-right: 0.5rem;
+}
+
+.lastMessage {
+    font-size: 0.95rem;
+    padding-right: 0.2rem;
+    font-weight: 300;
+}
+
+.getMessage {
+    display: flex;
+    flex-direction: column;
+}
+

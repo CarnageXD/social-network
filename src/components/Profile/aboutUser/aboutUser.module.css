@@ -1,0 +1,6 @@
+.aboutUser {
+    margin-top: 4rem;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: space-between;
+}

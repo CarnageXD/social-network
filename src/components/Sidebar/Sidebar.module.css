@@ -1,0 +1,72 @@
+.sidebar {
+    grid-area: sidebar;
+    background-color: #048BD7;  
+    border-bottom-left-radius: 25px;
+}
+
+.userSidebar {
+    padding-top: 3.5rem;
+    color:white;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 1.5rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 0;
+}
+
+.item {
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+    margin-bottom: 2rem;
+}
+
+.item:hover {
+    background-color: #4da6da;
+}
+
+.item::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    margin-right: 0.3rem;
+}
+
+.profile::before {
+    content: '\f007';
+}
+
+.friends::before {
+    content: '\f500';
+}
+
+.dialogs::before {
+    content: '\f086';
+}
+
+.playlist::before {
+    content: '\f001';
+}
+
+.settings::before {
+    content: '\f4fe';
+}
+
+a {
+    color:white;
+    text-decoration: none;
+}
+
+.currentLink {
+    color:#95b8ca;
+}
+
+.currentLink:hover {
+    color:#95b8ca;
+}
+
+.freqFriends{
+    display: flex;
+    cursor: pointer;
+}

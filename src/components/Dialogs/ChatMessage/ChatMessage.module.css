@@ -1,0 +1,34 @@
+.message {
+    color: white;
+}
+
+.chatMessages {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    align-items: center;
+    transition: all .3s ease;
+}
+
+.senderInfo {
+    display: flex;  
+    padding: 0.7rem;
+    align-items: center;
+    font-size: 1.1rem;
+}
+
+.chatMessages:hover {
+    background-color: #0670ad;
+}
+
+.circleAvatar {
+    border-radius: 50%;
+    width: 4rem;
+    margin-right: 1rem;
+}
+
+.messageTime {
+    margin-right: 1rem;
+    font-size: 0.8rem;
+    color: rgb(223, 215, 215);
+}

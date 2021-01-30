@@ -1,0 +1,54 @@
+.dialogWrapper {   
+    height: 100%; 
+    display: grid;    
+    grid-template-columns: 1fr 2.5fr;
+    grid-template-rows: 1fr;
+    background-color: #04639b;
+    border-bottom-right-radius: 25px;
+}
+
+.selectChat {    
+    border-right: 1px solid #bbb;
+    max-width: 278px;
+    overflow-x: hidden;
+    
+}
+
+.emptyChatMessage {
+    font-size: 1.3rem;
+    color: white;
+    text-align: center;
+    align-self: center;
+}
+
+.messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.chatBlock {
+    font-size: 1.2rem;
+    border-top: 2px solid white;
+}
+
+.chatInput {
+    padding: 0.3rem;
+    box-sizing: border-box;
+    color:white;
+    background-color: #0c5681;
+    height: 4rem;
+    border: none;
+    width: 100%;
+    border-bottom-right-radius: 25px;
+}
+
+.chatInput::placeholder {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.527);
+}
+
+.chatInput:focus {
+    outline: none;
+}

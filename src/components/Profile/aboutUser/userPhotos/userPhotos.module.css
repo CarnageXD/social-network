@@ -1,0 +1,15 @@
+.userPhotos {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatarGrid {
+    display: flex;
+    justify-content: space-between;
+}
+
+.item {
+    cursor: pointer;
+    transition: 0.3s;
+}
