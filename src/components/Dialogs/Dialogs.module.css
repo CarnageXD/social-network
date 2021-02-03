@@ -2,29 +2,41 @@
     height: 100%; 
     display: grid;    
     grid-template-columns: 1fr 2.5fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 70vh;
     background-color: #04639b;
     border-bottom-right-radius: 25px;
 }
 
-.selectChat {    
-    border-right: 1px solid #bbb;
+.selectChat { 
     max-width: 278px;
-    overflow-x: hidden;
-    
+    overflow-x: hidden;    
 }
 
-.emptyChatMessage {
+.selectChat::-webkit-scrollbar, .messages::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+.selectChat::-webkit-scrollbar-thumb, .messages::-webkit-scrollbar-thumb {
+    background-color: #095581;
+}
+
+/* .emptyChatMessage {
     font-size: 1.3rem;
     color: white;
     text-align: center;
     align-self: center;
+} */
+
+.messages {    
+    overflow: auto;
 }
 
-.messages {
+.messagesContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    height: 100%;
+    overflow: auto;
 }
 
 

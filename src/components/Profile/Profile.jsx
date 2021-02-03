@@ -1,6 +1,6 @@
 import AboutUser from './aboutUser/aboutUser'
-import WallPosts from './wallFeed/wallFeed';
 import s from './Profile.module.css'
+import WallFeedContainer from './wallFeed/WallFeedContainer';
 
 
 const Profile = (props) => {
@@ -8,7 +8,7 @@ const Profile = (props) => {
         <div className={s.profile}>
             <div className={s.profileWrapper}>
                 <AboutUser />
-                <WallPosts newPostText={props.profilePage.newPostText} dispatch={props.dispatch} posts={props.profilePage.posts} />
+                <WallFeedContainer store={props.store} />
             </div>
         </div>
     )
