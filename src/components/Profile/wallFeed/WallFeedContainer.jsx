@@ -1,19 +1,26 @@
-import React from "react"
+import { connect } from "react-redux"
 import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile-reducer'
 import WallFeed from './WallFeed'
 
 
-const WallFeedContainer = (props) => {
-    let state = props.store.getState()
-    const onAddPost = () => {
-        props.store.dispatch(addPostActionCreator())
+const mapStateToProps = (state) => {
+    return {
+        posts: state.profilePage.posts,
+        newPostText: state.profilePage.newPostText
     }
-
-    const onPostChange = (text) => {
-        let action = updateNewPostTextActionCreator(text)
-        props.store.dispatch(action)
-    }
-    return (<WallFeed onAddPost={onAddPost} updateNewPostText={onPostChange} posts={state.profilePage.posts} newPostText={state.profilePage.newPostText} />)
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onAddPost: () => { dispatch(addPostActionCreator()) },
+        onPostChange: (text) => {
+            let action = updateNewPostTextActionCreator(text)
+            dispatch(action)
+        }
+
+    }
+}
+
+const WallFeedContainer = connect(mapStateToProps, mapDispatchToProps)(WallFeed)
 
 export default WallFeedContainer

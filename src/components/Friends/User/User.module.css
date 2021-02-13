@@ -1,0 +1,32 @@
+.friendContainer {
+    margin-bottom: .5rem;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.circleAvatar {
+    width: 5rem;
+    border-radius: 50%;
+    margin-right: .6rem;
+}
+
+.userStatus, .user {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.userStatus {
+    align-items: center;
+    max-width: 2rem;
+    margin-right: 2rem;
+}
+
+
+
+.aboutUser {
+    display: flex;
+    margin-left: 0.4rem
+}

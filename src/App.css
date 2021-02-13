@@ -25,11 +25,3 @@ body{
     background-color: #048BD7;
     border-bottom-right-radius: 25px;
 }
-
-.dialog-bgc {
-  border-bottom-right-radius: 25px;
-  background-color: blue;
-  height: 100%;
-}
-
-

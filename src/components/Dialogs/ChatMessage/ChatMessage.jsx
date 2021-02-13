@@ -5,7 +5,7 @@ const ChatMessage = (props) => {
         <div className={s.chatMessages}>
             <div className={s.senderInfo}>
                 <div>
-                    <img src={props.avatar} className={s.circleAvatar}></img>
+                    <img alt='chatAvatar' src={props.avatar} className={s.circleAvatar}></img>
                 </div>
                 <div className={s.message}>{props.message}</div>
             </div>

@@ -15,7 +15,7 @@ const WallFeed = (props) => {
 
     const onPostChange = (e) => {
         let text = e.target.value
-        props.updateNewPostText(text)
+        props.onPostChange(text)
     }
     return (
         <div className={s.wallFeed}>

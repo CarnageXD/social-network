@@ -8,7 +8,8 @@ const Profile = (props) => {
         <div className={s.profile}>
             <div className={s.profileWrapper}>
                 <AboutUser />
-                <WallFeedContainer store={props.store} />
+                <WallFeedContainer />
+                {/* <WallFeedContainer store={props.store} /> */}
             </div>
         </div>
     )
