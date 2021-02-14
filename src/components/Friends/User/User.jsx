@@ -26,8 +26,8 @@ const User = (props) => {
                 {/* <div className={s.onlineStatus}>{props.status}</div> */}
                 <div className={s.followStatus}>
                     {props.followed ?
-                        <button className={s.followButton} onClick={() => { props.onFollow(props.userID, props.bool) }}>Unfollow</button> :
-                        <button className={s.followButton} onClick={() => { props.onFollow(props.userID, props.bool) }}>Follow</button>
+                        <button className={s.followButton} onClick={() => { props.onFollow(props.userID, props.followed) }}>Unfollow</button> :
+                        <button className={s.followButton} onClick={() => { props.onFollow(props.userID, props.followed) }}>Follow</button>
                     }
                 </div>
             </div>

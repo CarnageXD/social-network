@@ -22,6 +22,7 @@ body{
 
 .app-wrapper-content {  
     grid-area: content;
+  overflow-x: hidden;
     background-color: #048BD7;
     border-bottom-right-radius: 25px;
 }

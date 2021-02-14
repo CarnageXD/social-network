@@ -1,6 +1,9 @@
 const SHOW_MORE = 'SHOW_MORE'
 const FOLLOW_USER = 'FOLLOW_USER'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FRIENDS_FETCHING = 'TOGGLE_IS_FRIENDS_FETCHING'
 
 let initState = {
     users: [
@@ -24,13 +27,14 @@ let initState = {
         //     },
         // ])
     ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1,
+    isFetching: true,
 }
 
 export const friendsReducer = (state = initState, action) => {
     switch (action.type) {
-        case SET_USERS: {
-            return { ...state, users: [...state.users, ...action.users] }
-        }
         // case SHOW_MORE:
         //     return {
         //         ...state,
@@ -45,6 +49,24 @@ export const friendsReducer = (state = initState, action) => {
         //             message: '',
         //         }
         //     }
+        case SET_USERS: {
+            return { ...state, users: [...action.users] }
+        }
+        case SET_CURRENT_PAGE: {
+            return {
+                ...state, currentPage: action.currentPage
+            }
+        }
+        case SET_TOTAL_USERS_COUNT: {
+            return {
+                ...state, totalUsersCount: action.totalCount
+            }
+        }
+        case TOGGLE_IS_FRIENDS_FETCHING: {
+            return {
+                ...state, isFetching: action.isFetching
+            }
+        }
         case FOLLOW_USER:
             return {
                 ...state,
@@ -62,4 +84,7 @@ export const friendsReducer = (state = initState, action) => {
 
 export const showMoreActionCreator = () => ({ type: SHOW_MORE })
 export const setUsersActionCreator = (users) => ({ type: SET_USERS, users })
-export const followActionCreator = (userID, bool) => ({ type: FOLLOW_USER, followed: bool, id: userID })
+export const setCurrentPageActionCreator = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setTotalUsersCountActionCreator = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT, totalCount })
+export const toggleIsFriendsFetchingActionCreator = (isFetching) => ({ type: TOGGLE_IS_FRIENDS_FETCHING, isFetching })
+export const followActionCreator = (userID, followed) => ({ type: FOLLOW_USER, followed, id: userID })
