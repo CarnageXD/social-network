@@ -21,6 +21,7 @@ body{
 }
 
 .app-wrapper-content {  
+  height: 100%;
     grid-area: content;
   overflow-x: hidden;
     background-color: #048BD7;

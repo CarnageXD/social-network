@@ -5,11 +5,11 @@ import gridPhoto3 from './../../../../img/gridPhoto3.jpg'
 import gridPhoto4 from './../../../../img/gridPhoto4.jpg'
 import s from './userPhotos.module.css'
 
-const UserPhotos = () => {
+const UserPhotos = (props) => {
     return (
         <div className={s.userPhotos}>
             <div className={s.item}>
-                <img src={userAvatar} />
+                <img src={props.profile.photos.large || userAvatar} />
             </div>
             <div className={s.avatarGrid}>
                 <div className={s.item}>

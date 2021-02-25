@@ -1,9 +1,11 @@
 import preloader from './../../img/preloader.svg'
+import s from './Preloader.module.css'
 
 const Preloader = () => {
     return (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <img src={preloader}></img></div>
+        <div className={s.preloaderPosition}>
+            <img src={preloader}></img>
+        </div>
     )
 }
 

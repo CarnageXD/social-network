@@ -13,7 +13,7 @@ const Friends = (props) => {
     return (
         <div className={s.friendsWrapper} > {
             props.users.map((friend) =>
-                <User followed={friend.followed} key={friend.id} avatar={friend.photos.large} name={friend.name} location={friend.location} status={friend.status} userID={friend.id} onFollow={props.onFollow} />)
+                <User followed={friend.followed} key={friend.id} avatar={friend.photos.large} name={friend.name} location={friend.location} status={friend.status} userID={friend.id} onFollow={props.onFollow} isFollowingProgress={props.isFollowingProgress} followUser={props.followUser} unFollowUser={props.unFollowUser} />)
         }
             {/* <div className={s.showMore} >
                 <button className={s.showMoreButton} onClick={props.getUsers}>Show More</button>

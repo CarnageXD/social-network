@@ -1,7 +1,12 @@
+import { usersAPI } from "./../components/api/api"
+
 const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
+
 
 let initState = {
+    profile: null,
     posts: [
         { id: 5, message: 'so fucking deep' },
         { id: 4, message: 'Niko niko' },
@@ -25,6 +30,11 @@ export const profileReducer = (state = initState, action) => {
                 ...state,
                 newPostText: action.newText
             }
+        case SET_USER_PROFILE:
+            return {
+                ...state,
+                profile: action.profile,
+            }
 
         default: return state
     }
@@ -32,3 +42,10 @@ export const profileReducer = (state = initState, action) => {
 
 export const addPostActionCreator = () => ({ type: ADD_POST })
 export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
+
+
+export const getUserProfile = (userID) => (dispatch) => {
+    usersAPI.getProfile(userID)
+        .then(data => { dispatch(setUserProfile(data)) })
+}

@@ -1,43 +1,21 @@
 import { connect } from "react-redux"
-import {
-    followActionCreator, setUsersActionCreator,
-    setCurrentPageActionCreator, setTotalUsersCountActionCreator,
-    toggleIsFriendsFetchingActionCreator,
-} from '../../redux/friends-reducer'
+import { onFollow, setCurrentPage, toggleIsFollowingProgress, getUsers, followUser, unFollowUser }
+    from '../../redux/friends-reducer'
 import React from 'react'
-import * as axios from 'axios'
 import Friends from './Friends'
 import Preloader from "../common/Preloader"
-
-
+import { withAuthRedirect } from "../../hoc/withAuthRedirect"
+import { compose } from "redux"
 
 
 class FriendsContainerRequests extends React.Component {
     componentDidMount() {
         if (this.props.users.length === 0) {
-            this.props.toggleIsFriendsFetching(true)
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
-                this.props.toggleIsFriendsFetching(false)
-            }
-            )
+            this.props.getUsers(this.props.currentPage, this.props.pageSize)
         }
-    }
-    getUsers = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users?page=2').then(response => {
-            this.props.setUsers(response.data.items)
-        })
     }
     onPageChanged = (pageNumber) => {
-        this.props.toggleIsFriendsFetching(true)
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`).then(response => {
-            this.props.setUsers(response.data.items)
-            this.props.toggleIsFriendsFetching(false)
-
-        }
-        )
+        this.props.getUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
@@ -49,7 +27,11 @@ class FriendsContainerRequests extends React.Component {
                     pageSize={this.props.pageSize}
                     getUsers={this.getUsers}
                     users={this.props.users}
-                    onFollow={this.props.onFollow} />
+                    onFollow={this.props.onFollow}
+                    isFollowingProgress={this.props.isFollowingProgress}
+                    followUser={this.props.followUser}
+                    unFollowUser={this.props.unFollowUser}
+                />
             </div >
         )
     }
@@ -62,19 +44,20 @@ const mapStateToProps = (state) => {
         totalUsersCount: state.friendsPage.totalUsersCount,
         currentPage: state.friendsPage.currentPage,
         isFetching: state.friendsPage.isFetching,
+        isFollowingProgress: state.friendsPage.isFollowingProgress,
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onFollow: (userID, followed) => { dispatch(followActionCreator(userID, followed)) },
-        setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
-        setCurrentPage: (pageNumber) => { dispatch(setCurrentPageActionCreator(pageNumber)) },
-        setTotalUsersCount: (totalCount) => { dispatch(setTotalUsersCountActionCreator(totalCount)) },
-        toggleIsFriendsFetching: (isFetching) => { dispatch(toggleIsFriendsFetchingActionCreator(isFetching)) }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         onFollow: (userID, followed) => { dispatch(followActionCreator(userID, followed)) },
+//         setUsers: (users) => { dispatch(setUsersActionCreator(users)) },
+//         setCurrentPage: (pageNumber) => { dispatch(setCurrentPageActionCreator(pageNumber)) },
+//         setTotalUsersCount: (totalCount) => { dispatch(setTotalUsersCountActionCreator(totalCount)) },
+//         toggleIsFriendsFetching: (isFetching) => { dispatch(toggleIsFriendsFetchingActionCreator(isFetching)) }
+//     }
+// }
 
-const FriendsContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsContainerRequests)
-
-export default FriendsContainer
+export default compose(
+    connect(mapStateToProps, { onFollow, setCurrentPage, toggleIsFollowingProgress, getUsers, followUser, unFollowUser }),
+    withAuthRedirect)(FriendsContainerRequests)

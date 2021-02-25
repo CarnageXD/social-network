@@ -10,12 +10,19 @@ const Header = (props) => {
         <header className={s.header}>
             <NavLink to='/profile'><div className={s.logo}>D U N G E O N</div></NavLink>
             <div className={s.userMenu}>
-                <div className={s.userName}>{props.userName}</div>
+                {props.isAuth ? <><div className={s.userName}>{props.login}</div>
+                    <div className={s.userAvatar}>
+                        <img className={s.circleAvatar} src={circleAvatar}></img>
+                    </div>
+                    <div className={s.userTriangle}><FontAwesomeIcon icon={faCaretDown} />
+                    </div></> : <NavLink to='/login'>Sign In</NavLink>}
+
+                {/* <div className={s.userName}>{props.userName}</div>
                 <div className={s.userAvatar}>
                     <img className={s.circleAvatar} src={circleAvatar}></img>
                 </div>
                 <div className={s.userTriangle}><FontAwesomeIcon icon={faCaretDown} />
-                </div>
+                </div> */}
             </div>
         </header>
     )

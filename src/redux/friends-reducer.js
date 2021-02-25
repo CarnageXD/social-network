@@ -1,9 +1,12 @@
+import { usersAPI } from "./../components/api/api"
+
 const SHOW_MORE = 'SHOW_MORE'
 const FOLLOW_USER = 'FOLLOW_USER'
 const SET_USERS = 'SET_USERS'
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
 const TOGGLE_IS_FRIENDS_FETCHING = 'TOGGLE_IS_FRIENDS_FETCHING'
+const TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS'
 
 let initState = {
     users: [
@@ -31,6 +34,7 @@ let initState = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
+    isFollowingProgress: [],
 }
 
 export const friendsReducer = (state = initState, action) => {
@@ -78,13 +82,55 @@ export const friendsReducer = (state = initState, action) => {
                     return user
                 })
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS: {
+            return {
+                ...state,
+                isFollowingProgress: action.isFetching ?
+                    [...state.isFollowingProgress, action.id]
+                    : state.isFollowingProgress.filter(id => id !== action.id),
+            }
+        }
         default: return state
     }
 }
 
-export const showMoreActionCreator = () => ({ type: SHOW_MORE })
-export const setUsersActionCreator = (users) => ({ type: SET_USERS, users })
-export const setCurrentPageActionCreator = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
-export const setTotalUsersCountActionCreator = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT, totalCount })
-export const toggleIsFriendsFetchingActionCreator = (isFetching) => ({ type: TOGGLE_IS_FRIENDS_FETCHING, isFetching })
-export const followActionCreator = (userID, followed) => ({ type: FOLLOW_USER, followed, id: userID })
+export const showMore = () => ({ type: SHOW_MORE })
+export const setUsers = (users) => ({ type: SET_USERS, users })
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage })
+export const setTotalUsersCount = (totalCount) => ({ type: SET_TOTAL_USERS_COUNT, totalCount })
+export const toggleIsFriendsFetching = (isFetching) => ({ type: TOGGLE_IS_FRIENDS_FETCHING, isFetching })
+export const toggleIsFollowingProgress = (isFetching, id) => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, id })
+export const onFollow = (userID, followed) => ({ type: FOLLOW_USER, followed, id: userID })
+
+
+
+
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+    dispatch(toggleIsFriendsFetching(true))
+    usersAPI.getUsers(currentPage, pageSize).then(data => {
+        dispatch(setUsers(data.items))
+        dispatch(setTotalUsersCount(data.totalCount))
+        dispatch(toggleIsFriendsFetching(false))
+    }
+    )
+}
+
+export const unFollowUser = (userID, followed) => (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userID))
+    usersAPI.unFollowUser(userID).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(onFollow(userID, followed))
+        }
+        dispatch(toggleIsFollowingProgress(false, userID))
+    })
+}
+
+export const followUser = (userID, followed) => (dispatch) => {
+    dispatch(toggleIsFollowingProgress(true, userID))
+    usersAPI.followUser(userID).then(data => {
+        if (data.resultCode === 0) {
+            dispatch(onFollow(userID, followed))
+        }
+        dispatch(toggleIsFollowingProgress(false, userID))
+    })
+}
