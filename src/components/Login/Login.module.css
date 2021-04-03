@@ -1,0 +1,33 @@
+*:focus {
+    outline: 0;    
+}
+ .loginWrapper {
+    color: white;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginForm {
+    width: 230px;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemForm {
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemForm > label {
+    font-size: 1.3rem;
+}
+
+.itemField {
+    padding: .3rem;
+} 

@@ -19,12 +19,31 @@ export const usersAPI = {
         return axiosInstance.post(`follow/${userID}`).then(response => response.data)
     },
     getProfile(userID) {
+        console.warn('obsolete method. please use profileAPI obj :)')
+        return profileAPI.getProfile(userID)
+    },
+}
+
+export const profileAPI = {
+    getProfile(userID) {
         return axiosInstance.get(`profile/${userID}`).then(response => response.data)
     },
+    getUserJob(userID) {
+        return axiosInstance.get(`profile/status/${userID}`).then(response => response.data)
+    },
+    updateUserJob(userJob) {
+        return axiosInstance.put(`profile/status`, { status: userJob })
+    }
 }
 
 export const authAPI = {
     authMe() {
         return axiosInstance.get(`auth/me`).then(response => response.data)
+    },
+    loginMe(email, password, rememberMe = false) {
+        return axiosInstance.post(`auth/login`, { email, password, rememberMe })
+    },
+    logoutMe() {
+        return axiosInstance.delete(`auth/login`)
     }
 }

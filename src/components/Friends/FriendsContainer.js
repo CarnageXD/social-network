@@ -1,24 +1,26 @@
 import { connect } from "react-redux"
-import { onFollow, setCurrentPage, toggleIsFollowingProgress, getUsers, followUser, unFollowUser }
+import { onFollow, setCurrentPage, toggleIsFollowingProgress, requestUsers, followUser, unFollowUser }
     from '../../redux/friends-reducer'
 import React from 'react'
 import Friends from './Friends'
 import Preloader from "../common/Preloader"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import { compose } from "redux"
+import { getCurrentPage, getIsFetching, getIsFollowingProgress, getPageSize, getTotalUsersCount, getUsers } from "../../redux/users-selectors"
 
 
 class FriendsContainerRequests extends React.Component {
     componentDidMount() {
         if (this.props.users.length === 0) {
-            this.props.getUsers(this.props.currentPage, this.props.pageSize)
+            this.props.requestUsers(this.props.currentPage, this.props.pageSize)
         }
     }
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        this.props.requestUsers(pageNumber, this.props.pageSize)
     }
 
     render() {
+        console.log('render FriendsContainer');
         return (
             <div>
                 {this.props.isFetching ? <Preloader /> : null}
@@ -31,20 +33,33 @@ class FriendsContainerRequests extends React.Component {
                     isFollowingProgress={this.props.isFollowingProgress}
                     followUser={this.props.followUser}
                     unFollowUser={this.props.unFollowUser}
+                    currentPage={this.props.currentPage}
                 />
             </div >
         )
     }
 }
 
+// const mapStateToProps = (state) => {
+//     return {
+//         users: state.friendsPage.users,
+//         pageSize: state.friendsPage.pageSize,
+//         totalUsersCount: state.friendsPage.totalUsersCount,
+//         currentPage: state.friendsPage.currentPage,
+//         isFetching: state.friendsPage.isFetching,
+//         isFollowingProgress: state.friendsPage.isFollowingProgress,
+//     }
+// }
+
 const mapStateToProps = (state) => {
+    console.log('mapStateToProps FriendsContainer');
     return {
-        users: state.friendsPage.users,
-        pageSize: state.friendsPage.pageSize,
-        totalUsersCount: state.friendsPage.totalUsersCount,
-        currentPage: state.friendsPage.currentPage,
-        isFetching: state.friendsPage.isFetching,
-        isFollowingProgress: state.friendsPage.isFollowingProgress,
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        isFollowingProgress: getIsFollowingProgress(state),
     }
 }
 
@@ -59,5 +74,5 @@ const mapStateToProps = (state) => {
 // }
 
 export default compose(
-    connect(mapStateToProps, { onFollow, setCurrentPage, toggleIsFollowingProgress, getUsers, followUser, unFollowUser }),
+    connect(mapStateToProps, { onFollow, setCurrentPage, toggleIsFollowingProgress, requestUsers, followUser, unFollowUser }),
     withAuthRedirect)(FriendsContainerRequests)

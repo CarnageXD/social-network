@@ -6,7 +6,7 @@ const aboutUser = (props) => {
     return (
         <div className={s.aboutUser}>
             <UserPhotos profile={props.profile} />
-            <UserInformation profile={props.profile} />
+            <UserInformation profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} />
         </div>
     )
 }

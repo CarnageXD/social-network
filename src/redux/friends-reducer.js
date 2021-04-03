@@ -105,9 +105,10 @@ export const onFollow = (userID, followed) => ({ type: FOLLOW_USER, followed, id
 
 
 
-export const getUsers = (currentPage, pageSize) => (dispatch) => {
+export const requestUsers = (page, pageSize) => (dispatch) => {
     dispatch(toggleIsFriendsFetching(true))
-    usersAPI.getUsers(currentPage, pageSize).then(data => {
+    dispatch(setCurrentPage(page))
+    usersAPI.getUsers(page, pageSize).then(data => {
         dispatch(setUsers(data.items))
         dispatch(setTotalUsersCount(data.totalCount))
         dispatch(toggleIsFriendsFetching(false))

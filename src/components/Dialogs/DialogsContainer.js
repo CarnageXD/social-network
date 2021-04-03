@@ -6,6 +6,7 @@ import Dialogs from './Dialogs'
 
 
 const mapStateToProps = (state) => {
+    console.log('mapStateToProps DialogsContainer');
     return {
         dialogsPage: state.dialogsPage,
     }

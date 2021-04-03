@@ -3,6 +3,11 @@
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 300;
+    display: flex;
+}
+
+.userJobDescription {
+    margin-left: .3rem;
 }
 
 .name {
@@ -30,4 +35,12 @@
     background-color: #0476b8;
     color: white;
     border: 2px solid white;
+}
+
+.inputEditModeBlock {
+    line-height: 1.8rem;
+}
+
+.inputEditMode:focus {
+    outline: none;
 }
