@@ -20,7 +20,6 @@ class FriendsContainerRequests extends React.Component {
     }
 
     render() {
-        console.log('render FriendsContainer');
         return (
             <div>
                 {this.props.isFetching ? <Preloader /> : null}
@@ -52,7 +51,6 @@ class FriendsContainerRequests extends React.Component {
 // }
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps FriendsContainer');
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),

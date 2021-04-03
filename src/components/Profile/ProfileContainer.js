@@ -16,13 +16,11 @@ class ProfileContainer extends React.Component {
         this.props.getUserJob(userID)
     }
     render() {
-        console.log('render ProfileContainer');
         return (<Profile {...this.props} profile={this.props.profile} userJob={this.props.userJob} updateUserJob={this.props.updateUserJob} />)
     }
 }
 
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps ProfileContainer');
     return {
         profile: state.profilePage.profile,
         userJob: state.profilePage.userJob,
