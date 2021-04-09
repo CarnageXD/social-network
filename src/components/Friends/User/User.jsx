@@ -1,7 +1,6 @@
 import s from './User.module.css'
-import circleAvatar1 from './../../../img/brad.png'
+import circleAvatar1 from './../../../img/gridPhoto1.png'
 import { NavLink } from 'react-router-dom'
-import { followAPI } from '../../api/api'
 
 
 
