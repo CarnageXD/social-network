@@ -1,4 +1,4 @@
-import circleAvatar from './../img/van-avatar.jpeg'
+import circleAvatar from './../img/van-post.jpg'
 import circleAvatar1 from './../img/brad.png'
 import circleAvatar2 from './../img/steve.jpg'
 import circleAvatar3 from './../img/ricardo.jpg'
