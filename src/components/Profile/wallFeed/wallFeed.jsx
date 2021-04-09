@@ -1,4 +1,4 @@
-import s from "./WallFeed.module.css"
+import s from "./wallFeed.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
 import React from "react"
