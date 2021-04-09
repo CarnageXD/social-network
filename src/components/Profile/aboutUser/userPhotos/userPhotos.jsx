@@ -1,15 +1,15 @@
-import userAvatar from './../../../../img/van-avatar.jpeg'
-import gridPhoto1 from './../../../../img/gridPhoto1.png'
-import gridPhoto2 from './../../../../img/gridPhoto2.png'
-import gridPhoto3 from './../../../../img/gridPhoto3.png'
+import userAvatar from './../../../../img/van-avatar.jpg'
+import gridPhoto1 from './../../../../img/gridPhoto1.jpg'
+import gridPhoto2 from './../../../../img/gridPhoto2.jpg'
+import gridPhoto3 from './../../../../img/gridPhoto3.jpg'
 import gridPhoto4 from './../../../../img/gridPhoto4.jpg'
 import s from './userPhotos.module.css'
 
 const UserPhotos = (props) => {
     return (
         <div className={s.userPhotos}>
-            <div className={s.itemAvatar}>
-                <img className={s.itemAvatar} src={props.profile.photos.large || userAvatar} />
+            <div className={s.item}>
+                <img src={props.profile.photos.large || userAvatar} />
             </div>
             <div className={s.avatarGrid}>
                 <div className={s.item}>

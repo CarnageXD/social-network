@@ -1,4 +1,4 @@
-import circleAvatar from './../../../../img/van-avatar.jpeg'
+import circleAvatar from './../../../../img/van-post.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";

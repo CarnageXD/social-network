@@ -9,7 +9,7 @@ const SET_USER_JOB = 'SET_USER_JOB'
 let initState = {
     profile: null,
     posts: [
-        { id: 5, message: 'hello' },
+        { id: 5, message: 'so fucking deep' },
         { id: 4, message: 'Niko niko' },
         { id: 3, message: 'In three weeks,  i’m going to visit Iceland, it’ll be awesome!' },
         { id: 2, message: 'A minute ago met angry dude in locker, had to destroy his underpants' },
