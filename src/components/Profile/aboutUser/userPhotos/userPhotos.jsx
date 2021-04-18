@@ -9,7 +9,7 @@ const UserPhotos = (props) => {
     return (
         <div className={s.userPhotos}>
             <div className={s.itemAvatar}>
-                <img className={s.itemAvatar} src={props.profile.photos.large || userAvatar} />
+                <img className={s.itemAvatar} src={props.profile.photos.large || gridPhoto4} />
             </div>
             <div className={s.avatarGrid}>
                 <div className={s.item}>

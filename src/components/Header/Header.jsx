@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import circleAvatar from './../../img/van-avatar.jpeg'
+import circleAvatar from './../../img/gridPhoto4.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import s from './Header.module.css'

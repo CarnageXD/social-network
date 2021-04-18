@@ -4,6 +4,7 @@ const ADD_POST = 'ADD_POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_USER_JOB = 'SET_USER_JOB'
+const DELETE_POST = 'DELETE_POST'
 
 
 let initState = {
@@ -42,6 +43,10 @@ export const profileReducer = (state = initState, action) => {
                 ...state,
                 userJob: action.userJob,
             }
+        case DELETE_POST:
+            return {
+                ...state, posts: state.posts.filter(p => p.id !== action.postId)
+            }
 
         default: return state
     }
@@ -51,25 +56,25 @@ export const addPostActionCreator = () => ({ type: ADD_POST })
 export const updateNewPostTextActionCreator = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text })
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
 export const setUserJob = (userJob) => ({ type: SET_USER_JOB, userJob })
+export const deletePost = (postId) => ({ type: DELETE_POST, postId })
 
 
 
-export const getUserProfile = (userID) => (dispatch) => {
-    usersAPI.getProfile(userID)
-        .then(data => { dispatch(setUserProfile(data)) })
+
+export const getUserProfile = (userID) => async (dispatch) => {
+    const data = await usersAPI.getProfile(userID)
+    dispatch(setUserProfile(data))
 }
 
-export const getUserJob = (userID) => (dispatch) => {
-    profileAPI.getUserJob(userID)
-        .then(data => { dispatch(setUserJob(data)) })
+export const getUserJob = (userID) => async (dispatch) => {
+    const data = await profileAPI.getUserJob(userID)
+    dispatch(setUserJob(data))
 }
 
-export const updateUserJob = (userJob) => (dispatch) => {
-    profileAPI.updateUserJob(userJob)
-        .then(data => {
-            if (data.resultCode === 0) {
-                debugger
-                dispatch(setUserJob(userJob))
-            }
-        })
+export const updateUserJob = (userJob) => async (dispatch) => {
+    const data = await profileAPI.updateUserJob(userJob)
+    if (data.resultCode === 0) {
+        debugger
+        dispatch(setUserJob(userJob))
+    }
 }

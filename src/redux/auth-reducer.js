@@ -1,7 +1,7 @@
 import { authAPI } from "./../components/api/api"
 
 
-const SET_USER_DATA = 'SET_USER_DATA'
+const SET_USER_DATA = 'auth/SET_USER_DATA'
 const SET_AUTHORIZATION_ERROR = 'SET_AUTHORIZATION_ERROR'
 
 
@@ -36,29 +36,26 @@ export const setAuthUserData = (id, login, email, isAuth) => ({ type: SET_USER_D
 export const setAuthorizationError = () => ({ type: SET_AUTHORIZATION_ERROR })
 
 
-export const getAuthUserData = () => (dispatch) => {
-    return authAPI.authMe()
-        .then(data => {
-            let { id, login, email } = data.data
-            if (data.resultCode === 0) {
-                dispatch(setAuthUserData(id, login, email, true))
-            }
-        })
+export const getAuthUserData = () => async (dispatch) => {
+    const data = await authAPI.authMe()
+    let { id, login, email } = data.data
+    if (data.resultCode === 0) {
+        dispatch(setAuthUserData(id, login, email, true))
+    }
 }
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-    authAPI.loginMe(email, password, rememberMe).then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(getAuthUserData())
-        }
-        else dispatch(setAuthorizationError())
-    })
+export const login = (email, password, rememberMe) => async (dispatch) => {
+    const response = await authAPI.loginMe(email, password, rememberMe)
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData())
+    }
+    else dispatch(setAuthorizationError())
+
 }
 
-export const logout = () => (dispatch) => {
-    authAPI.logoutMe().then(response => {
-        if (response.data.resultCode === 0) {
-            dispatch(setAuthUserData(null, null, null, false))
-        }
-    })
+export const logout = () => async (dispatch) => {
+    const response = await authAPI.logoutMe()
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthUserData(null, null, null, false))
+    }
 }

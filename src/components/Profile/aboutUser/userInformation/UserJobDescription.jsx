@@ -6,7 +6,13 @@ class UserJobDescription extends React.Component {
         editMode: false,
         userJob: this.props.userJob
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.userJob != this.props.userJob) {
+            this.setState({
+                userJob: this.props.userJob
+            })
+        }
+    }
     toggleEditMode = () => {
         if (this.state.editMode) {
             this.setState({ editMode: false, })
@@ -21,13 +27,7 @@ class UserJobDescription extends React.Component {
         this.setState({ userJob: e.currentTarget.value })
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevProps.userJob != this.props.userJob) {
-            this.setState({
-                userJob: this.props.userJob
-            })
-        }
-    }
+
 
     render() {
         return (

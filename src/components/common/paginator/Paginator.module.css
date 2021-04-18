@@ -1,0 +1,16 @@
+.pageNumber {
+    margin-right: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.selectedPage {
+    font-weight: bold;
+    color: #aaa;
+}
+
+.pagesWrapper {
+    margin: 0 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}

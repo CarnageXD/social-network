@@ -3,7 +3,7 @@ import { onFollow, setCurrentPage, toggleIsFollowingProgress, requestUsers, foll
     from '../../redux/friends-reducer'
 import React from 'react'
 import Friends from './Friends'
-import Preloader from "../common/Preloader"
+import Preloader from "../common/preloader/Preloader"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import { compose } from "redux"
 import { getCurrentPage, getIsFetching, getIsFollowingProgress, getPageSize, getTotalUsersCount, getUsers } from "../../redux/users-selectors"

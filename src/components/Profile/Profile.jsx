@@ -1,7 +1,7 @@
 import AboutUser from './aboutUser/aboutUser'
 import s from './Profile.module.css'
 import WallFeedContainer from './wallFeed/WallFeedContainer';
-import Preloader from '../common/Preloader'
+import Preloader from '../common/preloader/Preloader'
 
 
 
