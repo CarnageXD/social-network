@@ -31,7 +31,7 @@ let initState = {
         // ])
     ],
     pageSize: 5,
-    totalUsersCount: 0,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: true,
     isFollowingProgress: [],
@@ -63,7 +63,7 @@ export const friendsReducer = (state = initState, action) => {
         }
         case SET_TOTAL_USERS_COUNT: {
             return {
-                ...state, totalUsersCount: action.totalCount
+                ...state, totalItemsCount: action.totalCount
             }
         }
         case TOGGLE_IS_FRIENDS_FETCHING: {

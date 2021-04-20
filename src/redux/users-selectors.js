@@ -13,7 +13,7 @@ export const getPageSize = (state) => {
 }
 
 export const getTotalUsersCount = (state) => {
-    return state.friendsPage.totalUsersCount
+    return state.friendsPage.totalItemsCount
 }
 
 export const getCurrentPage = (state) => {

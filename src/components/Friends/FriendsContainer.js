@@ -3,7 +3,6 @@ import { onFollow, setCurrentPage, toggleIsFollowingProgress, requestUsers, foll
     from '../../redux/friends-reducer'
 import React from 'react'
 import Friends from './Friends'
-import Preloader from "../common/preloader/Preloader"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import { compose } from "redux"
 import { getCurrentPage, getIsFetching, getIsFollowingProgress, getPageSize, getTotalUsersCount, getUsers } from "../../redux/users-selectors"
@@ -21,20 +20,18 @@ class FriendsContainerRequests extends React.Component {
 
     render() {
         return (
-            <div>
-                {this.props.isFetching ? <Preloader /> : null}
-                <Friends onPageChanged={this.onPageChanged}
-                    totalUsersCount={this.props.totalUsersCount}
-                    pageSize={this.props.pageSize}
-                    getUsers={this.getUsers}
-                    users={this.props.users}
-                    onFollow={this.props.onFollow}
-                    isFollowingProgress={this.props.isFollowingProgress}
-                    followUser={this.props.followUser}
-                    unFollowUser={this.props.unFollowUser}
-                    currentPage={this.props.currentPage}
-                />
-            </div >
+            <Friends onPageChanged={this.onPageChanged}
+                totalUsersCount={this.props.totalItemsCount}
+                pageSize={this.props.pageSize}
+                getUsers={this.getUsers}
+                users={this.props.users}
+                onFollow={this.props.onFollow}
+                isFollowingProgress={this.props.isFollowingProgress}
+                followUser={this.props.followUser}
+                unFollowUser={this.props.unFollowUser}
+                currentPage={this.props.currentPage}
+                isFetching={this.props.isFetching}
+            />
         )
     }
 }
@@ -54,7 +51,7 @@ const mapStateToProps = (state) => {
     return {
         users: getUsers(state),
         pageSize: getPageSize(state),
-        totalUsersCount: getTotalUsersCount(state),
+        totalItemsCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
         isFollowingProgress: getIsFollowingProgress(state),

@@ -6,11 +6,29 @@
 
 .selectedPage {
     font-weight: bold;
-    color: #aaa;
+    color: rgb(238, 225, 39);
+    text-shadow: .5px .5px .5px black;
 }
 
 .pagesWrapper {
-    margin: 0 1rem;
+    margin-top: 1rem;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.choosePageInput {
+    width: 37px;
+    margin-right: 1.5rem;
+}
+
+.paginationButton {
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    line-height: 25px;
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.paginationLeftButton {
+    margin-right: 1rem;
 }
