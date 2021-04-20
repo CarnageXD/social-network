@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/first-project/static/css/main.1150262d.chunk.css",
+    "main.js": "/first-project/static/js/main.b9afd763.chunk.js",
+    "main.js.map": "/first-project/static/js/main.b9afd763.chunk.js.map",
+    "runtime-main.js": "/first-project/static/js/runtime-main.9fccd760.js",
+    "runtime-main.js.map": "/first-project/static/js/runtime-main.9fccd760.js.map",
+    "static/js/2.a6067524.chunk.js": "/first-project/static/js/2.a6067524.chunk.js",
+    "static/js/2.a6067524.chunk.js.map": "/first-project/static/js/2.a6067524.chunk.js.map",
+    "static/css/3.8408a155.chunk.css": "/first-project/static/css/3.8408a155.chunk.css",
+    "static/js/3.f20688cc.chunk.js": "/first-project/static/js/3.f20688cc.chunk.js",
+    "static/js/3.f20688cc.chunk.js.map": "/first-project/static/js/3.f20688cc.chunk.js.map",
+    "static/js/4.72a254ee.chunk.js": "/first-project/static/js/4.72a254ee.chunk.js",
+    "static/js/4.72a254ee.chunk.js.map": "/first-project/static/js/4.72a254ee.chunk.js.map",
+    "static/js/5.8cc0d9cb.chunk.js": "/first-project/static/js/5.8cc0d9cb.chunk.js",
+    "static/js/5.8cc0d9cb.chunk.js.map": "/first-project/static/js/5.8cc0d9cb.chunk.js.map",
+    "index.html": "/first-project/index.html",
+    "static/css/3.8408a155.chunk.css.map": "/first-project/static/css/3.8408a155.chunk.css.map",
+    "static/css/main.1150262d.chunk.css.map": "/first-project/static/css/main.1150262d.chunk.css.map",
+    "static/js/2.a6067524.chunk.js.LICENSE.txt": "/first-project/static/js/2.a6067524.chunk.js.LICENSE.txt",
+    "static/media/brad.png": "/first-project/static/media/brad.a264de06.png",
+    "static/media/gridPhoto1.png": "/first-project/static/media/gridPhoto1.548c9589.png",
+    "static/media/gridPhoto2.75cfb318.png": "/first-project/static/media/gridPhoto2.75cfb318.png",
+    "static/media/gridPhoto3.27e72090.png": "/first-project/static/media/gridPhoto3.27e72090.png",
+    "static/media/gridPhoto4.jpg": "/first-project/static/media/gridPhoto4.187ccb00.jpg",
+    "static/media/preloader.c7ef3cf3.svg": "/first-project/static/media/preloader.c7ef3cf3.svg",
+    "static/media/ricardo.jpg": "/first-project/static/media/ricardo.fac7fb87.jpg",
+    "static/media/steve.8e0cb2dd.jpg": "/first-project/static/media/steve.8e0cb2dd.jpg",
+    "static/media/van-avatar.jpeg": "/first-project/static/media/van-avatar.43cdfd4f.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9fccd760.js",
+    "static/js/2.a6067524.chunk.js",
+    "static/css/main.1150262d.chunk.css",
+    "static/js/main.b9afd763.chunk.js"
+  ]
+}
