@@ -2,7 +2,7 @@
 
 body{
   margin-top: 1rem;
-  background-color: #bfe9ff;
+  background-color: #6a9ecfd8;
   height: 100vh;
   font-family: 'Poppins', sans-serif;
 }
@@ -24,6 +24,6 @@ body{
   height: 100%;
     grid-area: content;
   overflow-x: hidden;
-    background-color: #048BD7;
+    background-color: #afddfd;
     border-bottom-right-radius: 25px;
 }

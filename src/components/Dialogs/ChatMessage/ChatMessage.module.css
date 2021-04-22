@@ -1,5 +1,5 @@
 .message {
-    color: white;
+    color: #336a8f;
 }
 
 .chatMessages {
@@ -18,7 +18,7 @@
 }
 
 .chatMessages:hover {
-    background-color: #0670ad;
+    background-color: #86a6b8;
 }
 
 .circleAvatar {
@@ -30,5 +30,5 @@
 .messageTime {
     margin-right: 1rem;
     font-size: 0.8rem;
-    color: rgb(223, 215, 215);
+    color: #427394d0;
 }

@@ -1,5 +1,5 @@
 .item {
-    color: white;
+    color: #306885;
     margin-bottom: 1rem;
     font-size: 1.3rem;
     font-weight: 300;
@@ -26,13 +26,13 @@
     height: 3rem;
     width: 100%;
     font-size: 1.2rem;
-    border: 2px solid #0476b8;
+    border: 2px solid #5d98b9;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .infoButton button:hover {
-    background-color: #0476b8;
+    background-color: #306885;
     color: white;
     border: 2px solid white;
 }

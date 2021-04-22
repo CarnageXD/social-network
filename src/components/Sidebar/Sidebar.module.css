@@ -1,12 +1,12 @@
 .sidebar {
     grid-area: sidebar;
-    background-color: #048BD7;  
+    background-color: #daeffd;  
     border-bottom-left-radius: 25px;
 }
 
 .userSidebar {
     padding-top: 3.5rem;
-    color:white;
+    color:rgb(116, 168, 202);
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 1.5rem;
@@ -24,7 +24,7 @@
 }
 
 .item:hover {
-    background-color: #4da6da;
+    color:#306885;
 }
 
 .item::before {
@@ -59,11 +59,11 @@ a {
 }
 
 .currentLink {
-    color:#95b8ca;
+    color:#91c1da;
 }
 
 .currentLink:hover {
-    color:#95b8ca;
+    color:#306885;
 }
 
 .freqFriends{

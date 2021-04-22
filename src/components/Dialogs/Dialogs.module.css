@@ -3,7 +3,7 @@
     display: grid;    
     grid-template-columns: 1fr 2.5fr;
     grid-template-rows: 70vh;
-    background-color: #04639b;
+    background-color: #90bed8;
     border-bottom-right-radius: 25px;
 }
 
@@ -13,11 +13,11 @@
 }
 
 .selectChat::-webkit-scrollbar, .messages::-webkit-scrollbar {
-    width: 0.5rem;
+    width: 0.4rem;
 }
 
 .selectChat::-webkit-scrollbar-thumb, .messages::-webkit-scrollbar-thumb {
-    background-color: #095581;
+    background-color: #6192ac;
 }
 
 /* .emptyChatMessage {
@@ -48,8 +48,9 @@
 .chatInput {
     padding: 0.3rem;
     box-sizing: border-box;
-    color:white;
-    background-color: #0c5681;
+    color:rgb(255, 255, 255);
+    font-weight: bolder;
+    background-color: #6192ac;
     height: 4rem;
     border: none;
     width: 100%;

@@ -1,13 +1,12 @@
 .pageNumber {
     margin-right: 1rem;
-    color: white;
+    color: #497FA4;
     cursor: pointer;
 }
 
 .selectedPage {
     font-weight: bold;
-    color: rgb(238, 225, 39);
-    text-shadow: .5px .5px .5px black;
+    color: rgb(79, 117, 148);
 }
 
 .pagesWrapper {
@@ -23,7 +22,7 @@
 
 .paginationButton {
     cursor: pointer;
-    color: rgb(255, 255, 255);
+    color: #497FA4;
     line-height: 25px;
     font-size: 1.5rem;
     font-weight: bolder;
