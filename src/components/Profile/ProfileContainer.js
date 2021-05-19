@@ -1,12 +1,12 @@
 import React from 'react'
 import Profile from './Profile';
 import { connect } from 'react-redux'
-import { getUserProfile, getUserJob, updateUserJob } from './../../redux/profile-reducer'
+import { getUserProfile, getUserJob, updateUserJob, saveAvatar } from './../../redux/profile-reducer'
 import { withRouter } from 'react-router-dom';
 import { compose } from "redux"
 
 class ProfileContainer extends React.Component {
-    componentDidMount() {
+    loadProfile() {
         let userID = this.props.match.params.userID
         if (!userID) {
             userID = this.props.loggedId;
@@ -15,8 +15,18 @@ class ProfileContainer extends React.Component {
         this.props.getUserProfile(userID)
         this.props.getUserJob(userID)
     }
+
+    componentDidMount() {
+        this.loadProfile()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.match.params.userID != this.props.match.params.userID)
+            this.loadProfile()
+    }
+
     render() {
-        return (<Profile {...this.props} profile={this.props.profile} userJob={this.props.userJob} updateUserJob={this.props.updateUserJob} />)
+        return (<Profile {...this.props} profile={this.props.profile} userJob={this.props.userJob} updateUserJob={this.props.updateUserJob} isOwner={!this.props.match.params.userID} saveAvatar={this.props.saveAvatar} />)
     }
 }
 
@@ -28,4 +38,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default compose(connect(mapStateToProps, { getUserProfile, getUserJob, updateUserJob }), withRouter)(ProfileContainer)
+export default compose(connect(mapStateToProps, { getUserProfile, getUserJob, updateUserJob, saveAvatar }), withRouter)(ProfileContainer)

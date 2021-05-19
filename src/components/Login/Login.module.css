@@ -2,7 +2,7 @@
     outline: 0;    
 }
  .loginWrapper {
-    color: white;
+    color: #3a7897;
     margin-left: 2rem;
     display: flex;
     flex-direction: column;
@@ -31,3 +31,7 @@
 .itemField {
     padding: .3rem;
 } 
+
+.captchaInput {
+    margin-top: 1rem;
+}

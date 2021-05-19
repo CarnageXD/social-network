@@ -1,0 +1,10 @@
+.contactMeWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.contactIcon {
+    cursor: pointer;
+    font-size: 2rem;
+    margin-left: 1rem;
+}

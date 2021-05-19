@@ -5,8 +5,8 @@ import s from './aboutUser.module.css'
 const aboutUser = (props) => {
     return (
         <div className={s.aboutUser}>
-            <UserPhotos profile={props.profile} />
-            <UserInformation profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} />
+            <UserPhotos profile={props.profile} isOwner={props.isOwner} saveAvatar={props.saveAvatar} />
+            <UserInformation profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} isOwner={props.isOwner} />
         </div>
     )
 }

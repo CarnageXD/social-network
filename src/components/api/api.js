@@ -33,6 +33,11 @@ export const profileAPI = {
     },
     updateUserJob(userJob) {
         return axiosInstance.put(`profile/status`, { status: userJob })
+    },
+    saveAvatarPhoto(avatarFile) {
+        const formData = new FormData()
+        formData.append("image", avatarFile)
+        return axiosInstance.put(`profile/photo`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
     }
 }
 
@@ -40,10 +45,16 @@ export const authAPI = {
     authMe() {
         return axiosInstance.get(`auth/me`).then(response => response.data)
     },
-    loginMe(email, password, rememberMe = false) {
-        return axiosInstance.post(`auth/login`, { email, password, rememberMe })
+    loginMe(email, password, rememberMe = false, captcha = null) {
+        return axiosInstance.post(`auth/login`, { email, password, rememberMe, captcha })
     },
     logoutMe() {
         return axiosInstance.delete(`auth/login`)
+    }
+}
+
+export const securityAPI = {
+    getCaptcha() {
+        return axiosInstance.get(`security/get-captcha-url`)
     }
 }

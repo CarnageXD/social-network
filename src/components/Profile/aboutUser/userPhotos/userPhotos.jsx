@@ -1,15 +1,22 @@
 import userAvatar from './../../../../img/van-avatar.jpeg'
 import gridPhoto1 from './../../../../img/gridPhoto1.png'
-import gridPhoto2 from './../../../../img/gridPhoto2.png'
+import gridPhoto2 from './../../../../img/gridPhoto2.jpg'
 import gridPhoto3 from './../../../../img/gridPhoto3.png'
 import gridPhoto4 from './../../../../img/gridPhoto4.jpg'
 import s from './userPhotos.module.css'
 
 const UserPhotos = (props) => {
+
+    const onAvatarSelected = (e) => {
+        if (e.target.files.length) {
+            props.saveAvatar(e.target.files[0])
+        }
+    }
+
     return (
         <div className={s.userPhotos}>
             <div className={s.itemAvatar}>
-                <img className={s.itemAvatar} src={props.profile.photos.large || gridPhoto4} />
+                <img className={s.itemAvatar} src={props.profile.photos.large || userAvatar} />
             </div>
             <div className={s.avatarGrid}>
                 <div className={s.item}>
@@ -25,6 +32,7 @@ const UserPhotos = (props) => {
                     <img src={gridPhoto4}></img>
                 </div>
             </div>
+            {props.isOwner ? <input type='file' onChange={onAvatarSelected}></input> : null}
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import s from './Paginator.module.css'
+import cn from 'classnames'
 
 const Paginator = (props) => {
     const [choosePageMode, setChoosePageMode] = useState(false)
@@ -20,7 +21,7 @@ const Paginator = (props) => {
     return (
         <div className={s.pagesWrapper}>
             <span onClick={() => setPortionNumber(--portionNumber)}
-                className={`${s.paginationButton} ${s.paginationLeftButton}`} >{
+                className={cn(s.paginationButton, s.paginationLeftButton)} >{
                     portionNumber === 1 ? null : '<'}</span>
             {portionNumber === 1 ?
                 null

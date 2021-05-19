@@ -12,7 +12,7 @@ const Profile = (props) => {
     return (
         <div className={s.profile}>
             <div className={s.profileWrapper}>
-                <AboutUser profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} />
+                <AboutUser profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} isOwner={props.isOwner} saveAvatar={props.saveAvatar} />
                 <WallFeedContainer />
             </div>
         </div>

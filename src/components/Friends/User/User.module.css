@@ -10,6 +10,13 @@ button {
     background-color: #DAEEFD;
     border: 1px solid black;
     border-radius: 7px;
+    transition: ease-in-out all .3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #3a7897;
+    color: white;
 }
 
 .circleAvatar {

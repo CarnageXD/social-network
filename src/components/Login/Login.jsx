@@ -7,6 +7,7 @@ import { Redirect } from 'react-router'
 
 const mapStateToProps = (state) => {
     return ({
+        captchaUrl: state.auth.captchaUrl,
         isAuth: state.auth.isAuth,
         authorizationError: state.auth.authorizationError,
     })
@@ -20,7 +21,7 @@ const LoginForm = connect(mapStateToProps, { login })((props) => {
 
     const onSubmit = (data) => {
         reset()
-        props.login(data.email, data.password, data.rememberMe)
+        props.login(data.email, data.password, data.rememberMe, data.captcha)
     }
     return (
         <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)}>
@@ -40,6 +41,12 @@ const LoginForm = connect(mapStateToProps, { login })((props) => {
                 <label htmlFor="rememberMe">Remember me </label>
                 <input type="checkbox" id="rememberMe" ref={register} name='rememberMe' />
             </div>
+            {props.captchaUrl ?
+                <div className={s.itemForm}>
+                    <img src={props.captchaUrl}></img>
+                    <input ref={register} id="captcha" name="captcha" className={s.captchaInput}></input>
+                </div>
+                : null}
             <div className={s.itemForm}>
                 <input type="submit" value='Submit' />
             </div>
