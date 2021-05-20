@@ -3,7 +3,7 @@ import circleAvatar1 from './../img/brad.png'
 import circleAvatar2 from './../img/steve.jpg'
 import circleAvatar3 from './../img/ricardo.jpg'
 import circleAvatar4 from './../img/billy.jpg'
-const ADD_MESSAGE = 'ADD_MESSAGE'
+import { DialogsAction, DialogsActionTypes, DialogsState } from '../types/dialogsTypes'
 
 let initState = {
     chatData: [
@@ -24,21 +24,23 @@ let initState = {
     newMessage: { id: 5, message: '', avatar: circleAvatar, messageTime: "09:44AM" }
 }
 
-export const dialogsReducer = (state = initState, action) => {
+export const dialogsReducer = (state = initState, action: DialogsAction): DialogsState => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case DialogsActionTypes.ADD_MESSAGE:
+            let body = action.newMessageBody
             return {
                 ...state,
                 messagesData: [
                     ...state.messagesData, {
-                        message: action.text,
+                        id: state.newMessage.id,
+                        message: body,
                         avatar: state.newMessage.avatar,
                         messageTime: state.newMessage.messageTime,
-                    }
+                    },
                 ],
             }
         default: return state
     }
 }
 
-export const addMessageActionCreator = (text) => ({ type: ADD_MESSAGE, text })
+export const addMessageActionCreator = (newMessageBody: string) => ({ type: DialogsActionTypes.ADD_MESSAGE, newMessageBody })
