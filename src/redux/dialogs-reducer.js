@@ -4,7 +4,6 @@ import circleAvatar2 from './../img/steve.jpg'
 import circleAvatar3 from './../img/ricardo.jpg'
 import circleAvatar4 from './../img/billy.jpg'
 const ADD_MESSAGE = 'ADD_MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
 
 let initState = {
     chatData: [
@@ -32,25 +31,14 @@ export const dialogsReducer = (state = initState, action) => {
                 ...state,
                 messagesData: [
                     ...state.messagesData, {
-                        message: state.newMessage.message,
+                        message: action.text,
                         avatar: state.newMessage.avatar,
                         messageTime: state.newMessage.messageTime,
                     }
                 ],
-                newMessage: {
-                    message: '',
-                }
-            }
-        case UPDATE_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessage: {
-                    message: action.newText
-                },
             }
         default: return state
     }
 }
 
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
-export const updateMessageTextActionCreator = (text) => ({ type: UPDATE_MESSAGE_TEXT, newText: text })
+export const addMessageActionCreator = (text) => ({ type: ADD_MESSAGE, text })
