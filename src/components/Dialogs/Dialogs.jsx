@@ -1,21 +1,23 @@
 import Chats from './Chats/Chats'
 import s from './Dialogs.module.css'
 import ChatMessage from './ChatMessage/ChatMessage'
-import React from "react"
+import React, { useState } from "react"
 
 
 const Dialogs = (props) => {
     let state = props.dialogsPage
 
+    const [text, setText] = useState(state.newMessage.message)
+
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            props.handleKeyPress()
+            let text = event.target.value
+            props.handleKeyPress(text)
         }
     }
 
-    const updateMessageText = (e) => {
-        let text = e.target.value
-        props.updateMessageText(text)
+    const updateMessageText = (event) => {
+        setText(event.target.value)
     }
 
     let chatElements =
@@ -33,7 +35,7 @@ const Dialogs = (props) => {
                 <div className={s.messagesContainer}>
                     {messagesElements}
                     <div className={s.chatBlock}>
-                        <input onChange={updateMessageText} onKeyPress={handleKeyPress} placeholder='Enter a text to send...' className={s.chatInput} type='text' value={state.newMessage.message}></input>
+                        <input onChange={updateMessageText} onKeyPress={handleKeyPress} placeholder='Enter a text to send...' className={s.chatInput} type='text' value={text}></input>
                     </div>
                 </div>
             </div>

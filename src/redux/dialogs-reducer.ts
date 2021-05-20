@@ -3,8 +3,37 @@ import circleAvatar1 from './../img/brad.png'
 import circleAvatar2 from './../img/steve.jpg'
 import circleAvatar3 from './../img/ricardo.jpg'
 import circleAvatar4 from './../img/billy.jpg'
-const ADD_MESSAGE = 'ADD_MESSAGE'
-const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
+
+export enum DialogsActionTypes {
+    ADD_MESSAGE = 'ADD_MESSAGE',
+}
+
+export interface DialogsState {
+    chatData: IChatData[],
+    messagesData: Array<IMessagesData>,
+    newMessage: IMessagesData,
+}
+
+interface IChatData {
+    id: number,
+    avatar: string,
+    name: string,
+    lastMessage: string,
+}
+
+interface IMessagesData {
+    id: number,
+    message: string,
+    avatar: string,
+    messageTime: string,
+}
+
+interface AddMessageAction {
+    type: DialogsActionTypes.ADD_MESSAGE,
+    newMessageBody: string,
+}
+
+export type DialogsAction = AddMessageAction
 
 let initState = {
     chatData: [
@@ -25,32 +54,23 @@ let initState = {
     newMessage: { id: 5, message: '', avatar: circleAvatar, messageTime: "09:44AM" }
 }
 
-export const dialogsReducer = (state = initState, action) => {
+export const dialogsReducer = (state = initState, action: DialogsAction): DialogsState => {
     switch (action.type) {
-        case ADD_MESSAGE:
+        case DialogsActionTypes.ADD_MESSAGE:
+            let body = action.newMessageBody
             return {
                 ...state,
                 messagesData: [
                     ...state.messagesData, {
-                        message: state.newMessage.message,
+                        id: state.newMessage.id,
+                        message: body,
                         avatar: state.newMessage.avatar,
                         messageTime: state.newMessage.messageTime,
-                    }
+                    },
                 ],
-                newMessage: {
-                    message: '',
-                }
-            }
-        case UPDATE_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessage: {
-                    message: action.newText
-                },
             }
         default: return state
     }
 }
 
-export const addMessageActionCreator = () => ({ type: ADD_MESSAGE })
-export const updateMessageTextActionCreator = (text) => ({ type: UPDATE_MESSAGE_TEXT, newText: text })
+export const addMessageActionCreator = (newMessageBody: string) => ({ type: DialogsActionTypes.ADD_MESSAGE, newMessageBody })

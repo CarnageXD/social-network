@@ -39,20 +39,6 @@ let initState = {
 
 export const friendsReducer = (state = initState, action) => {
     switch (action.type) {
-        // case SHOW_MORE:
-        //     return {
-        //         ...state,
-        //         users: [
-        //             ...state.messagesData, {
-        //                 message: state.newMessage.message,
-        //                 avatar: state.newMessage.avatar,
-        //                 messageTime: state.newMessage.messageTime,
-        //             }
-        //         ],
-        //         newMessage: {
-        //             message: '',
-        //         }
-        //     }
         case SET_USERS: {
             return { ...state, users: [...action.users] }
         }
