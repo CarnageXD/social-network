@@ -1,12 +1,22 @@
 import s from './userInformation.module.css'
 import React from 'react'
 
-class UserJobDescription extends React.Component {
+interface PropsType {
+    userJob: string,
+    updateUserJob: (userJob: string) => void,
+}
+
+interface StateType {
+    editMode: boolean,
+    userJob: string,
+}
+
+class UserJobDescription extends React.Component<PropsType, StateType> {
     state = {
         editMode: false,
         userJob: this.props.userJob
     }
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: PropsType, prevState: StateType) {
         if (prevProps.userJob != this.props.userJob) {
             this.setState({
                 userJob: this.props.userJob
@@ -23,7 +33,7 @@ class UserJobDescription extends React.Component {
         }
     }
 
-    onUserJobChange = (e) => {
+    onUserJobChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         this.setState({ userJob: e.currentTarget.value })
     }
 

@@ -1,10 +1,23 @@
 import s from './Friends.module.css'
-import Paginator from '../common/paginator/Paginator'
+import Paginator, { PaginatorPropsInterface } from '../common/paginator/Paginator'
 import User from './User/User'
 import Preloader from '../common/preloader/Preloader'
+import { FC } from 'react'
+import { UserInterface } from '../../types/reducersTypes/friendsTypes'
 
 
-const Friends = (props) => {
+interface FriendsPropsInterface {
+    users: Array<UserInterface>,
+    isFetching: boolean,
+    onFollow: (userID: number, followed: boolean) => void,
+    isFollowingProgress: Array<number>,
+    followUser: (userID: number, followed: boolean) => void,
+    unFollowUser: (userID: number, followed: boolean) => void,
+}
+
+type FriendsPropsType = FriendsPropsInterface & PaginatorPropsInterface
+
+const Friends: FC<FriendsPropsType> = ({ ...props }) => {
     return (
         <div className={s.friendsWrapper}>
             {
@@ -13,7 +26,7 @@ const Friends = (props) => {
                         <User key={friend.id} avatar={friend.photos.large} {...friend} userID={friend.id} {...props} />)
             }
             <div className={s.paginatorWrapper}>
-                <Paginator currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalUsersCount={props.totalUsersCount} pageSize={props.pageSize} />
+                <Paginator pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalItemsCount={props.totalItemsCount} />
             </div>
         </div>
     )

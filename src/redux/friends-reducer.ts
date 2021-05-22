@@ -1,5 +1,5 @@
 import { usersAPI } from "../components/api/api"
-import { FriendsAction, FriendsActionTypes, FriendsState, UserInterface } from "../types/friendsTypes"
+import { FriendsAction, FriendsActionTypes, FriendsState, UserInterface } from "../types/reducersTypes/friendsTypes"
 
 let initState = {
     users: [] as Array<UserInterface>,

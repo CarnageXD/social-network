@@ -1,4 +1,4 @@
-import { UserPhotosInterface } from "../types/profileTypes"
+import { UserPhotosInterface } from "./profileTypes"
 
 export enum FriendsActionTypes {
     FOLLOW_USER = 'FOLLOW_USER',

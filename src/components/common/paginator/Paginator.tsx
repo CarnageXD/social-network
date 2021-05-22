@@ -1,19 +1,26 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import s from './Paginator.module.css'
 import cn from 'classnames'
 
-const Paginator = (props) => {
-    const [choosePageMode, setChoosePageMode] = useState(false)
-    const [inputPage, setInputPage] = useState()
-    let [portionNumber, setPortionNumber] = useState(1)
+export interface PaginatorPropsInterface {
+    totalItemsCount: number,
+    currentPage: number,
+    onPageChanged: (page: number) => void,
+    pageSize?: number | undefined,
+}
 
-    let pages = []
+const Paginator: FC<PaginatorPropsInterface> = (props) => {
+    const [choosePageMode, setChoosePageMode] = useState<boolean>(false)
+    const [inputPage, setInputPage] = useState<number>(1)
+    let [portionNumber, setPortionNumber] = useState<number>(1)
+
+    let pages: Array<number> = []
 
     const portionSize = 5;
     let leftPortionElement = (portionNumber - 1) * portionSize + 1;
     let rightPortionElement = portionNumber * portionSize;
 
-    let pagesCount = Math.ceil(props.totalUsersCount / portionSize)
+    let pagesCount = Math.ceil(props.totalItemsCount / portionSize)
 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -51,7 +58,7 @@ const Paginator = (props) => {
                             props.onPageChanged(inputPage)
                         }
                         }
-                            onChange={(e) => setInputPage(e.currentTarget.value)} autoFocus={true}></input>
+                            onChange={(e) => setInputPage(Number(e.currentTarget.value))} autoFocus={true}></input>
                         :
                         <span className={s.pageNumber}>...</span>
                 }

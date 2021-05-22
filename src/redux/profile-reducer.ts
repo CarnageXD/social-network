@@ -1,5 +1,5 @@
 import { profileAPI, usersAPI } from "../components/api/api"
-import { ProfileAction, ProfileActionTypes, ProfileInterface, ProfileState } from "../types/profileTypes"
+import { ProfileAction, ProfileActionTypes, ProfileInterface, ProfileState } from "../types/reducersTypes/profileTypes"
 
 let initState = {
     profile: null,

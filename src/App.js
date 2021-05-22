@@ -39,7 +39,7 @@ class App extends React.Component {
         <Sidebar state={this.props.state.frequentFriends} />
         <div className='app-wrapper-content'>
           <Switch>
-            <Route exact path='/' render={() => <Redirect from='/' to='/profile' />} />
+            <Route exact path='/first-project' render={() => <Redirect from='/' to='/profile' />} />
             <Route path='/profile/:userID?' render={withSuspense(ProfileContainer)} />
             <Route path='/friends' render={() => <FriendsContainer />} />
             <Route path='/dialogs' render={withSuspense(DialogsContainer)} />

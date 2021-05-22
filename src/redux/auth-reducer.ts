@@ -1,5 +1,5 @@
 import { authAPI, securityAPI } from "../components/api/api"
-import { AuthAction, AuthActionTypes, AuthState, SetUserDataAction } from "../types/authTypes"
+import { AuthAction, AuthActionTypes, AuthState, SetUserDataAction } from "../types/reducersTypes/authTypes"
 
 
 let initState = {

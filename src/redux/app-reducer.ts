@@ -1,4 +1,4 @@
-import { AppAction, AppActionTypes, AppState } from "../types/appTypes"
+import { AppAction, AppActionTypes, AppState } from "../types/reducersTypes/appTypes"
 import { getAuthUserData } from "./auth-reducer"
 
 let initState = {
