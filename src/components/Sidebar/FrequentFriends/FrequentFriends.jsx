@@ -6,7 +6,7 @@ const FrequentFriends = (props) => {
         <div className={s.freqFriends}>
             <div className={s.item}>
                 <div className={s.friendImg}>
-                    <img src={props.avatar} className={s.circleAvatar} />
+                    <img src={props.avatar} className={s.circleAvatar} alt='frequentFriends' />
                 </div>
                 <div className={s.friendName}>{props.name}</div>
             </div>

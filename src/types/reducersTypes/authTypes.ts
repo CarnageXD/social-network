@@ -4,7 +4,6 @@ export enum AuthActionTypes {
     GET_CAPTCHA_URL_SUCCESS = 'GET_CAPTCHA_URL_SUCCESS'
 }
 
-
 export interface AuthState {
     id: number | null,
     email: string | null,
@@ -27,17 +26,5 @@ export interface SetUserDataAction {
     type: AuthActionTypes.SET_USER_DATA,
     isFetching?: boolean,
     payload: IAuthPayload,
-
 }
 
-interface SetAuthorizationErrorAction {
-    type: AuthActionTypes.SET_AUTHORIZATION_ERROR,
-    payload: boolean,
-}
-
-interface GetCaptchaUrlSuccessAction {
-    type: AuthActionTypes.GET_CAPTCHA_URL_SUCCESS,
-    captcha: string,
-}
-
-export type AuthAction = SetUserDataAction | SetAuthorizationErrorAction | GetCaptchaUrlSuccessAction

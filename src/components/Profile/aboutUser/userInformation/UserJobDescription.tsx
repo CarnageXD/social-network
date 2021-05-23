@@ -17,7 +17,7 @@ class UserJobDescription extends React.Component<PropsType, StateType> {
         userJob: this.props.userJob
     }
     componentDidUpdate(prevProps: PropsType, prevState: StateType) {
-        if (prevProps.userJob != this.props.userJob) {
+        if (prevProps.userJob !== this.props.userJob) {
             this.setState({
                 userJob: this.props.userJob
             })

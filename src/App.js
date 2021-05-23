@@ -1,13 +1,10 @@
 import React from 'react'
 import './App.css';
 import Sidebar from './components/Sidebar/Sidebar';
-import Profile from './components/Profile/Profile';
 import Playlist from './components/Playlist/Playlist';
 import Settings from './components/Settings/Settings';
 import { Redirect, Route, Switch } from 'react-router-dom'
-// import DialogsContainer from './components/Dialogs/DialogsContainer';
 import FriendsContainer from './components/Friends/FriendsContainer';
-// import ProfileContainer from './components/Profile/ProfileContainer.js';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';

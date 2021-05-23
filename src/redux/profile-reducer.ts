@@ -1,5 +1,7 @@
-import { profileAPI, ResultCodes, usersAPI } from "../components/api/api"
-import { ProfileAction, ProfileActionTypes, ProfileInterface, ProfileState } from "../types/reducersTypes/profileTypes"
+import { ResultCodes } from "../components/api/api"
+import { profileAPI } from "../components/api/profile-api"
+import { ProfileActionTypes, ProfileInterface, ProfileState, UserPhotosInterface } from "../types/reducersTypes/profileTypes"
+import { BaseThunkType, InferActionTypes } from "./redux-store"
 
 let initState = {
     profile: null,
@@ -15,7 +17,7 @@ let initState = {
     photos: null,
 }
 
-export const profileReducer = (state = initState, action: ProfileAction): ProfileState => {
+export const profileReducer = (state = initState, action: ProfileActions): ProfileState => {
     switch (action.type) {
         case ProfileActionTypes.ADD_POST:
             return {
@@ -53,33 +55,32 @@ export const profileReducer = (state = initState, action: ProfileAction): Profil
 }
 
 
-
-export const addPostActionCreator = () => ({ type: ProfileActionTypes.ADD_POST })
-export const updateNewPostTextActionCreator = (text: string) => ({ type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: text })
-export const setUserProfile = (profile: ProfileInterface) => ({ type: ProfileActionTypes.SET_USER_PROFILE, profile })
-export const setUserJob = (userJob: string) => ({ type: ProfileActionTypes.SET_USER_JOB, userJob })
-export const deletePost = (postId: number) => ({ type: ProfileActionTypes.DELETE_POST, postId })
-export const setUserAvatar = (photos: string) => ({ type: ProfileActionTypes.SAVE_AVATAR, photos })
-
-
-
-
-
-export const getUserProfile = (userID: number) => async (dispatch: any) => {
-    const data = await usersAPI.getProfile(userID)
-    dispatch(setUserProfile(data))
+export const actions = {
+    addPostActionCreator: () => ({ type: ProfileActionTypes.ADD_POST } as const),
+    updateNewPostTextActionCreator: (text: string) => ({ type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: text } as const),
+    setUserProfile: (profile: ProfileInterface) => ({ type: ProfileActionTypes.SET_USER_PROFILE, profile } as const),
+    setUserJob: (userJob: string) => ({ type: ProfileActionTypes.SET_USER_JOB, userJob } as const),
+    deletePost: (postId: number) => ({ type: ProfileActionTypes.DELETE_POST, postId } as const),
+    setUserAvatar: (photos: UserPhotosInterface) => ({ type: ProfileActionTypes.SAVE_AVATAR, photos } as const),
 }
 
-export const getUserJob = (userID: number) => async (dispatch: any) => {
+
+
+export const getUserProfile = (userID: number): ThunkType => async (dispatch) => {
+    const data = await profileAPI.getProfile(userID)
+    dispatch(actions.setUserProfile(data))
+}
+
+export const getUserJob = (userID: number): ThunkType => async (dispatch) => {
     const data = await profileAPI.getUserJob(userID)
-    dispatch(setUserJob(data))
+    dispatch(actions.setUserJob(data))
 }
 
-export const updateUserJob = (userJob: string) => async (dispatch: any) => {
+export const updateUserJob = (userJob: string): ThunkType => async (dispatch) => {
     try {
         const data = await profileAPI.updateUserJob(userJob)
-        if (data.data.resultCode === ResultCodes.Success) {
-            dispatch(setUserJob(userJob))
+        if (data.resultCode === ResultCodes.Success) {
+            dispatch(actions.setUserJob(userJob))
         }
     }
     catch {
@@ -87,9 +88,12 @@ export const updateUserJob = (userJob: string) => async (dispatch: any) => {
     }
 }
 
-export const saveAvatar = (avatarFile: string) => async (dispatch: any) => {
+export const saveAvatar = (avatarFile: string): ThunkType => async (dispatch) => {
     const response = await profileAPI.saveAvatarPhoto(avatarFile)
     if (response.data.resultCode === 0) {
-        dispatch(setUserAvatar(response.data.data.photos))
+        dispatch(actions.setUserAvatar(response.data.data.photos))
     }
 }
+
+type ProfileActions = InferActionTypes<typeof actions>
+type ThunkType = BaseThunkType<ProfileActions>

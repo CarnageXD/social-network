@@ -43,7 +43,7 @@ const LoginForm = connect(mapStateToProps, { login })((props) => {
             </div>
             {props.captchaUrl ?
                 <div className={s.itemForm}>
-                    <img src={props.captchaUrl}></img>
+                    <img src={props.captchaUrl} alt='captcha'></img>
                     <input ref={register} id="captcha" name="captcha" className={s.captchaInput}></input>
                 </div>
                 : null}

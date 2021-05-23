@@ -1,7 +1,6 @@
-import { Dispatch } from "redux"
-import { usersAPI } from "../components/api/api"
+import { usersAPI } from "../components/api/users-api"
 import { FriendsActionTypes, FriendsState, UserInterface } from "../types/reducersTypes/friendsTypes"
-import { InferActionTypes } from "./redux-store"
+import { BaseThunkType, InferActionTypes } from "./redux-store"
 
 let initState = {
     users: [] as Array<UserInterface>,
@@ -12,9 +11,7 @@ let initState = {
     isFollowingProgress: [] as Array<number>,
 }
 
-type ActionTypes = InferActionTypes<typeof actions>
-
-export const friendsReducer = (state = initState, action: ActionTypes): FriendsState => {
+export const friendsReducer = (state = initState, action: FriendsActions): FriendsState => {
     switch (action.type) {
         case FriendsActionTypes.SET_USERS: {
             return { ...state, users: [...action.users] }
@@ -57,7 +54,7 @@ export const friendsReducer = (state = initState, action: ActionTypes): FriendsS
     }
 }
 
-export const actions = {
+const actions = {
     setUsers: (users: UserInterface[]) => ({ type: FriendsActionTypes.SET_USERS, users } as const),
     setCurrentPage: (currentPage: number) => ({ type: FriendsActionTypes.SET_CURRENT_PAGE, currentPage } as const),
     setTotalUsersCount: (totalCount: number) => ({ type: FriendsActionTypes.SET_TOTAL_USERS_COUNT, totalCount } as const),
@@ -68,7 +65,7 @@ export const actions = {
     onFollow: (userID: number, followed: boolean) => ({ type: FriendsActionTypes.FOLLOW_USER, followed, id: userID } as const),
 }
 
-export const requestUsers = (page: number, pageSize: number) => async (dispatch: Dispatch<ActionTypes>) => {
+export const requestUsers = (page: number, pageSize: number): ThunkType => async (dispatch) => {
     dispatch(actions.toggleIsFriendsFetching(true))
     dispatch(actions.setCurrentPage(page))
     const data = await usersAPI.getUsers(page, pageSize)
@@ -77,7 +74,7 @@ export const requestUsers = (page: number, pageSize: number) => async (dispatch:
     dispatch(actions.toggleIsFriendsFetching(false))
 }
 
-export const unFollowUser = (userID: number, followed: boolean) => async (dispatch: Dispatch<ActionTypes>) => {
+export const unFollowUser = (userID: number, followed: boolean): ThunkType => async (dispatch) => {
     dispatch(actions.toggleIsFollowingProgress(true, userID))
     const data = await usersAPI.unFollowUser(userID)
     if (data.resultCode === 0) {
@@ -86,7 +83,7 @@ export const unFollowUser = (userID: number, followed: boolean) => async (dispat
     dispatch(actions.toggleIsFollowingProgress(false, userID))
 }
 
-export const followUser = (userID: number, followed: boolean) => async (dispatch: Dispatch<ActionTypes>) => {
+export const followUser = (userID: number, followed: boolean): ThunkType => async (dispatch) => {
     dispatch(actions.toggleIsFollowingProgress(true, userID))
     const data = await usersAPI.followUser(userID)
     if (data.resultCode === 0) {
@@ -95,22 +92,5 @@ export const followUser = (userID: number, followed: boolean) => async (dispatch
     dispatch(actions.toggleIsFollowingProgress(false, userID))
 }
 
- // props.setUsers([
-        //     {
-        //         id: 1, avatar: circleAvatar4, name: 'Billy Harrington',
-        //         location: { country: 'USA', state: 'WA', city: 'NYC' }, status: 'offline', followed: true,
-        //     },
-
-        //     {
-        //         id: 2, avatar: circleAvatar2, name: 'Steve Rambo',
-        //         location: { country: 'USA', state: 'WA', city: 'NYC' }, status: 'online', followed: true,
-        //     },
-        //     {
-        //         id: 3, avatar: circleAvatar3, name: 'Ricardo Milos',
-        //         location: { country: 'Brazil', city: 'Rio da Janeiro' }, status: 'online', followed: false,
-        //     },
-        //     {
-        //         id: 4, avatar: circleAvatar1, name: 'Brad McGuire',
-        //         location: { country: 'USA', state: 'IL', city: 'Chicago' }, status: 'online', followed: true,
-        //     },
-        // ])
+type FriendsActions = InferActionTypes<typeof actions>
+type ThunkType = BaseThunkType<FriendsActions>

@@ -21,41 +21,7 @@ export interface FriendsState {
 export interface UserInterface {
     id: number,
     name: string,
-    status: string,
+    status?: string,
     photos: UserPhotosInterface,
     followed: boolean,
 }
-
-interface SetUsersAction {
-    type: FriendsActionTypes.SET_USERS,
-    users: UserInterface[]
-}
-
-interface SetCurrentPageAction {
-    type: FriendsActionTypes.SET_CURRENT_PAGE,
-    currentPage: number,
-}
-
-interface SetTotalUsersCountAction {
-    type: FriendsActionTypes.SET_TOTAL_USERS_COUNT,
-    totalCount: number,
-}
-
-interface ToggleIsFriendsFetchingAction {
-    type: FriendsActionTypes.TOGGLE_IS_FRIENDS_FETCHING,
-    isFetching: boolean,
-}
-
-interface FollowUserAction {
-    type: FriendsActionTypes.FOLLOW_USER,
-    id: number,
-    followed: boolean,
-}
-
-interface ToggleIsFollowingProgressAction {
-    type: FriendsActionTypes.TOGGLE_IS_FOLLOWING_PROGRESS,
-    isFetching: boolean,
-    id: number,
-}
-
-// export type FriendsAction = any;

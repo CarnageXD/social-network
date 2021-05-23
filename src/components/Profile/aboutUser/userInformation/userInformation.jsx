@@ -1,6 +1,5 @@
 import ContactMe from './contactMe'
 import s from './userInformation.module.css'
-import UserJobDescription from './UserJobDescription'
 import UserJobDescriptionWithHooks from './UserJobDescriptionsWithHooks'
 
 const UserInformation = (props) => {

@@ -44,7 +44,7 @@ const Paginator: FC<PaginatorPropsInterface> = (props) => {
             {
                 pages.filter(p => p >= leftPortionElement && p <= rightPortionElement).map(p =>
                     <span onClick={() => props.onPageChanged(p)}
-                        className={`${props.currentPage == p && s.selectedPage} ${s.pageNumber}`}>
+                        className={`${props.currentPage === p && s.selectedPage} ${s.pageNumber}`}>
                         {p}
                     </span>)
             }

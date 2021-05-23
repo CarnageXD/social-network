@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
-import { addMessageActionCreator } from '../../redux/dialogs-reducer'
+import { actions } from '../../redux/dialogs-reducer'
 import Dialogs from './Dialogs'
 
 
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleKeyPress: (text) => { dispatch(addMessageActionCreator(text)) },
+        handleKeyPress: (text) => { dispatch(actions.addMessageActionCreator(text)) },
     }
 }
 

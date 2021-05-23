@@ -1,6 +1,7 @@
 import circleAvatar1 from './../img/brad.png'
 import circleAvatar3 from './../img/ricardo.jpg'
 import circleAvatar4 from './../img/billy.jpg'
+import { InferActionTypes } from './redux-store'
 
 let initState = {
     friendsImages: [
@@ -10,6 +11,12 @@ let initState = {
     ]
 }
 
-export const sidebarReducer = (state = initState, action) => {
+type SideBarActions = InferActionTypes<typeof actions>
+
+const actions = {
+
+}
+
+export const sidebarReducer = (state = initState, action: SideBarActions) => {
     return state;
 }

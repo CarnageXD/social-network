@@ -21,7 +21,7 @@ class ProfileContainer extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if (prevProps.match.params.userID != this.props.match.params.userID)
+        if (prevProps.match.params.userID !== this.props.match.params.userID)
             this.loadProfile()
     }
 

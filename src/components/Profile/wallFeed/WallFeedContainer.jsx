@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile-reducer'
+import { actions } from '../../../redux/profile-reducer'
 import WallFeed from './wallFeed'
 
 
@@ -12,9 +12,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        onAddPost: () => { dispatch(addPostActionCreator()) },
+        onAddPost: () => { dispatch(actions.addPostActionCreator()) },
         onPostChange: (text) => {
-            let action = updateNewPostTextActionCreator(text)
+            let action = actions.updateNewPostTextActionCreator(text)
             dispatch(action)
         }
 

@@ -16,20 +16,20 @@ const UserPhotos = (props) => {
     return (
         <div className={s.userPhotos}>
             <div className={s.itemAvatar}>
-                <img className={s.itemAvatar} src={props.profile.photos.large || userAvatar} />
+                <img className={s.itemAvatar} src={props.profile.photos.large || userAvatar} alt='test' />
             </div>
             <div className={s.avatarGrid}>
                 <div className={s.item}>
-                    <img src={gridPhoto1}></img>
+                    <img src={gridPhoto1} alt='test'></img>
                 </div>
                 <div className={s.item}>
-                    <img src={gridPhoto2}></img>
+                    <img src={gridPhoto2} alt='test'></img>
                 </div>
                 <div className={s.item}>
-                    <img src={gridPhoto3}></img>
+                    <img src={gridPhoto3} alt='test'></img>
                 </div>
                 <div className={s.item}>
-                    <img src={gridPhoto4}></img>
+                    <img src={gridPhoto4} alt='test'></img>
                 </div>
             </div>
             {props.isOwner ? <input type='file' onChange={onAvatarSelected}></input> : null}

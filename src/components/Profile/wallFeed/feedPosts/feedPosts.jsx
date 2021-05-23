@@ -8,7 +8,7 @@ const FeedPosts = (props) => {
     return (
         <div className={s.feedPost}>
             <div className={s.postAvatar}>
-                <img className={s.circleAvatar} src={circleAvatar}></img>
+                <img className={s.circleAvatar} src={circleAvatar} alt='userAvatar'></img>
             </div>
             <div className={s.postText}>{props.message}</div>
             <div className={s.postReaction}>

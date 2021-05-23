@@ -3,7 +3,7 @@ import circleAvatar from './../../img/van-avatar.jpeg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import s from './Header.module.css'
-import { Link, NavLink, Redirect } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 
 const Header = (props) => {
@@ -17,7 +17,7 @@ const Header = (props) => {
                     <>
                         <div className={s.userName}>{props.login}</div>
                         <div className={s.userAvatar}>
-                            <img className={s.circleAvatar} src={circleAvatar}></img>
+                            <img className={s.circleAvatar} src={circleAvatar} alt='userAvatar'></img>
                         </div>
                         <div onClick={() => setTriangle((prev) => !prev)}
                             className={s.userTriangle}><FontAwesomeIcon icon={faCaretDown} /></div>

@@ -11,7 +11,7 @@ const User = (props) => {
                 <div className={s.aboutUser}>
                     <div className={s.userAvatar}>
                         <NavLink to={`/profile/${props.userID}`}>
-                            <img className={s.circleAvatar} src={props.avatar || circleAvatar1}></img>
+                            <img className={s.circleAvatar} src={props.avatar || circleAvatar1} alt='userAvatar'></img>
                         </NavLink>
                     </div>
                     <div className={s.userInfo}>

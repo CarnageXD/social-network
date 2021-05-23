@@ -7,7 +7,7 @@ const Chats = (props) => {
         <NavLink to={`/dialogs/${props.id}`}>
             <div className={s.chat}>
                 <div className={s.chatPhoto}>
-                    <img src={props.avatar} className={s.circleAvatar}></img>
+                    <img src={props.avatar} className={s.circleAvatar} alt='usersAvatar'></img>
                 </div>
                 <div className={s.getMessage}>
                     <div className={s.messageFrom}>{props.name}</div>
