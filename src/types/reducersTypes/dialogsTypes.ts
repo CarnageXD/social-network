@@ -21,10 +21,3 @@ interface IMessagesData {
     avatar: string,
     messageTime: string,
 }
-
-interface AddMessageAction {
-    type: DialogsActionTypes.ADD_MESSAGE,
-    newMessageBody: string,
-}
-
-export type DialogsAction = AddMessageAction

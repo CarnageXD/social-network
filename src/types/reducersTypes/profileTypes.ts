@@ -44,39 +44,3 @@ export interface UserPhotosInterface {
     small: string | null,
     large: string | null,
 }
-
-
-interface AddPostAction {
-    type: ProfileActionTypes.ADD_POST,
-}
-
-interface UpdatePostTextAction {
-    type: ProfileActionTypes.UPDATE_NEW_POST_TEXT,
-    newText: string,
-
-}
-
-interface SetUserProfileAction {
-    type: ProfileActionTypes.SET_USER_PROFILE,
-    profile: ProfileInterface,
-
-}
-
-interface SetUserJobAction {
-    type: ProfileActionTypes.SET_USER_JOB,
-    userJob: string,
-
-}
-
-interface DeletePostAction {
-    type: ProfileActionTypes.DELETE_POST,
-    postId: number,
-}
-
-interface SaveAvatarAction {
-    type: ProfileActionTypes.SAVE_AVATAR,
-    photos: UserPhotosInterface,
-}
-
-export type ProfileAction = AddPostAction | UpdatePostTextAction | SetUserProfileAction | SetUserJobAction
-    | DeletePostAction | SaveAvatarAction
