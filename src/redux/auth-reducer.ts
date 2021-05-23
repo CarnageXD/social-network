@@ -1,4 +1,4 @@
-import { authAPI, securityAPI } from "../components/api/api"
+import { authAPI, ResultCodes, securityAPI } from "../components/api/api"
 import { AuthAction, AuthActionTypes, AuthState, SetUserDataAction } from "../types/reducersTypes/authTypes"
 
 
@@ -42,15 +42,15 @@ export const getCaptchaUrlSuccess = (captcha: string) => ({ type: AuthActionType
 
 export const getAuthUserData = () => async (dispatch: any) => {
     const data = await authAPI.authMe()
-    let { id, login, email } = data.data
-    if (data.resultCode === 0) {
+    const { id, email, login } = data.data
+    if (data.resultCode === ResultCodes.Success) {
         dispatch(setAuthUserData(id, login, email, true))
     }
 }
 
 export const login = (email: string, password: string, rememberMe: boolean, captcha: string) => async (dispatch: any) => {
     const response = await authAPI.loginMe(email, password, rememberMe, captcha)
-    if (response.data.resultCode === 0) {
+    if (response.data.resultCode = ResultCodes.Success) {
         dispatch(getAuthUserData())
     }
     else if (response.data.resultCode === 10) {

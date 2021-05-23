@@ -1,5 +1,7 @@
+import { Dispatch } from "redux"
 import { usersAPI } from "../components/api/api"
-import { FriendsAction, FriendsActionTypes, FriendsState, UserInterface } from "../types/reducersTypes/friendsTypes"
+import { FriendsActionTypes, FriendsState, UserInterface } from "../types/reducersTypes/friendsTypes"
+import { InferActionTypes } from "./redux-store"
 
 let initState = {
     users: [] as Array<UserInterface>,
@@ -10,7 +12,9 @@ let initState = {
     isFollowingProgress: [] as Array<number>,
 }
 
-export const friendsReducer = (state = initState, action: FriendsAction): FriendsState => {
+type ActionTypes = InferActionTypes<typeof actions>
+
+export const friendsReducer = (state = initState, action: ActionTypes): FriendsState => {
     switch (action.type) {
         case FriendsActionTypes.SET_USERS: {
             return { ...state, users: [...action.users] }
@@ -53,43 +57,42 @@ export const friendsReducer = (state = initState, action: FriendsAction): Friend
     }
 }
 
-export const setUsers = (users: UserInterface[]) => ({ type: FriendsActionTypes.SET_USERS, users })
-export const setCurrentPage = (currentPage: number) => ({ type: FriendsActionTypes.SET_CURRENT_PAGE, currentPage })
-export const setTotalUsersCount = (totalCount: number) => ({ type: FriendsActionTypes.SET_TOTAL_USERS_COUNT, totalCount })
-export const toggleIsFriendsFetching = (isFetching: boolean) =>
-    ({ type: FriendsActionTypes.TOGGLE_IS_FRIENDS_FETCHING, isFetching })
-export const toggleIsFollowingProgress = (isFetching: boolean, id: number) =>
-    ({ type: FriendsActionTypes.TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, id })
-export const onFollow = (userID: number, followed: boolean) => ({ type: FriendsActionTypes.FOLLOW_USER, followed, id: userID })
-
-
-
-
-export const requestUsers = (page: number, pageSize: number) => async (dispatch: any) => {
-    dispatch(toggleIsFriendsFetching(true))
-    dispatch(setCurrentPage(page))
-    const data = await usersAPI.getUsers(page, pageSize)
-    dispatch(setUsers(data.items))
-    dispatch(setTotalUsersCount(data.totalCount))
-    dispatch(toggleIsFriendsFetching(false))
+export const actions = {
+    setUsers: (users: UserInterface[]) => ({ type: FriendsActionTypes.SET_USERS, users } as const),
+    setCurrentPage: (currentPage: number) => ({ type: FriendsActionTypes.SET_CURRENT_PAGE, currentPage } as const),
+    setTotalUsersCount: (totalCount: number) => ({ type: FriendsActionTypes.SET_TOTAL_USERS_COUNT, totalCount } as const),
+    toggleIsFriendsFetching: (isFetching: boolean) =>
+        ({ type: FriendsActionTypes.TOGGLE_IS_FRIENDS_FETCHING, isFetching } as const),
+    toggleIsFollowingProgress: (isFetching: boolean, id: number) =>
+        ({ type: FriendsActionTypes.TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, id } as const),
+    onFollow: (userID: number, followed: boolean) => ({ type: FriendsActionTypes.FOLLOW_USER, followed, id: userID } as const),
 }
 
-export const unFollowUser = (userID: number, followed: boolean) => async (dispatch: any) => {
-    dispatch(toggleIsFollowingProgress(true, userID))
+export const requestUsers = (page: number, pageSize: number) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch(actions.toggleIsFriendsFetching(true))
+    dispatch(actions.setCurrentPage(page))
+    const data = await usersAPI.getUsers(page, pageSize)
+    dispatch(actions.setUsers(data.items))
+    dispatch(actions.setTotalUsersCount(data.totalCount))
+    dispatch(actions.toggleIsFriendsFetching(false))
+}
+
+export const unFollowUser = (userID: number, followed: boolean) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch(actions.toggleIsFollowingProgress(true, userID))
     const data = await usersAPI.unFollowUser(userID)
     if (data.resultCode === 0) {
-        dispatch(onFollow(userID, followed))
+        dispatch(actions.onFollow(userID, followed))
     }
-    dispatch(toggleIsFollowingProgress(false, userID))
+    dispatch(actions.toggleIsFollowingProgress(false, userID))
 }
 
-export const followUser = (userID: number, followed: boolean) => async (dispatch: any) => {
-    dispatch(toggleIsFollowingProgress(true, userID))
+export const followUser = (userID: number, followed: boolean) => async (dispatch: Dispatch<ActionTypes>) => {
+    dispatch(actions.toggleIsFollowingProgress(true, userID))
     const data = await usersAPI.followUser(userID)
     if (data.resultCode === 0) {
-        dispatch(onFollow(userID, followed))
+        dispatch(actions.onFollow(userID, followed))
     }
-    dispatch(toggleIsFollowingProgress(false, userID))
+    dispatch(actions.toggleIsFollowingProgress(false, userID))
 }
 
  // props.setUsers([

@@ -58,4 +58,4 @@ interface ToggleIsFollowingProgressAction {
     id: number,
 }
 
-export type FriendsAction = SetUsersAction | SetCurrentPageAction | SetTotalUsersCountAction | ToggleIsFollowingProgressAction | FollowUserAction | ToggleIsFriendsFetchingAction
+// export type FriendsAction = any;

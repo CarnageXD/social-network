@@ -1,4 +1,4 @@
-import { profileAPI, usersAPI } from "../components/api/api"
+import { profileAPI, ResultCodes, usersAPI } from "../components/api/api"
 import { ProfileAction, ProfileActionTypes, ProfileInterface, ProfileState } from "../types/reducersTypes/profileTypes"
 
 let initState = {
@@ -78,7 +78,7 @@ export const getUserJob = (userID: number) => async (dispatch: any) => {
 export const updateUserJob = (userJob: string) => async (dispatch: any) => {
     try {
         const data = await profileAPI.updateUserJob(userJob)
-        if (data.resultCode === 0) {
+        if (data.data.resultCode === ResultCodes.Success) {
             dispatch(setUserJob(userJob))
         }
     }

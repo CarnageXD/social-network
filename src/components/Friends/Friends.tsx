@@ -9,7 +9,6 @@ import { UserInterface } from '../../types/reducersTypes/friendsTypes'
 interface FriendsPropsInterface {
     users: Array<UserInterface>,
     isFetching: boolean,
-    onFollow: (userID: number, followed: boolean) => void,
     isFollowingProgress: Array<number>,
     followUser: (userID: number, followed: boolean) => void,
     unFollowUser: (userID: number, followed: boolean) => void,

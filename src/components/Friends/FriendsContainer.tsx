@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { onFollow, requestUsers, followUser, unFollowUser }
+import { requestUsers, followUser, unFollowUser }
     from '../../redux/friends-reducer'
 import React from 'react'
 import Friends from './Friends'
@@ -22,7 +22,6 @@ interface FriendsMapDispatchToPropsInterface {
     requestUsers: (currentPage: number, pageSize: number) => void,
     followUser: (userID: number, followed: boolean) => void,
     unFollowUser: (userID: number, followed: boolean) => void,
-    onFollow: (userID: number, followed: boolean) => void,
 }
 
 type PropsType = FriendsMapStateToPropsInterface & FriendsMapDispatchToPropsInterface
@@ -43,7 +42,6 @@ class FriendsContainerRequests extends React.Component<PropsType> {
                 totalItemsCount={this.props.totalItemsCount}
                 pageSize={this.props.pageSize}
                 users={this.props.users}
-                onFollow={this.props.onFollow}
                 isFollowingProgress={this.props.isFollowingProgress}
                 followUser={this.props.followUser}
                 unFollowUser={this.props.unFollowUser}
@@ -67,5 +65,5 @@ const mapStateToProps = (state: AppStateType): FriendsMapStateToPropsInterface =
 }
 
 export default compose(
-    connect<FriendsMapStateToPropsInterface, FriendsMapDispatchToPropsInterface, {}, AppStateType>(mapStateToProps, { onFollow, requestUsers, followUser, unFollowUser }),
-    withAuthRedirect)(FriendsContainerRequests)
+    connect<FriendsMapStateToPropsInterface, FriendsMapDispatchToPropsInterface, {}, AppStateType>(mapStateToProps,
+        { requestUsers, followUser, unFollowUser }), withAuthRedirect)(FriendsContainerRequests)
