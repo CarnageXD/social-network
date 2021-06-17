@@ -2,10 +2,19 @@ import AboutUser from './aboutUser/aboutUser'
 import s from './Profile.module.css'
 import WallFeedContainer from './wallFeed/WallFeedContainer';
 import Preloader from '../common/preloader/Preloader'
+import { FC } from 'react';
+import { ProfileInterface } from '../../types/reducersTypes/profileTypes';
+import { UserInterface } from '../../types/reducersTypes/friendsTypes';
 
+interface ProfilePropsInterface {
+    profile: ProfileInterface & UserInterface,
+    userJob: string,
+    updateUserJob: (job: string) => void,
+    isOwner: boolean,
+    saveAvatar: (file: File) => void,
+}
 
-
-const Profile = (props) => {
+const Profile: FC<ProfilePropsInterface> = (props) => {
     if (!props.profile) {
         return <Preloader />
     }

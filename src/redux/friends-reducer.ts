@@ -1,3 +1,4 @@
+import { Reducer } from "redux"
 import { usersAPI } from "../components/api/users-api"
 import { FriendsActionTypes, FriendsState, UserInterface } from "../types/reducersTypes/friendsTypes"
 import { BaseThunkType, InferActionTypes } from "./redux-store"
@@ -11,7 +12,7 @@ let initState = {
     isFollowingProgress: [] as Array<number>,
 }
 
-export const friendsReducer = (state = initState, action: FriendsActions): FriendsState => {
+export const friendsReducer: Reducer<FriendsState, FriendsActions> = (state = initState, action) => {
     switch (action.type) {
         case FriendsActionTypes.SET_USERS: {
             return { ...state, users: [...action.users] }

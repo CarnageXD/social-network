@@ -13,7 +13,6 @@ ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
             <App state={store.getState()} />
-            {/* <App store={store} state={store.getState()} dispatch={store.dispatch.bind(store)} /> */}
         </BrowserRouter>
     </Provider>,
     // </React.StrictMode>,

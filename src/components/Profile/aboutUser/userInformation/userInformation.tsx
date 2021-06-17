@@ -1,8 +1,18 @@
+import { FC } from 'react'
+import { ProfileInterface } from '../../../../types/reducersTypes/profileTypes'
 import ContactMe from './contactMe'
 import s from './userInformation.module.css'
 import UserJobDescriptionWithHooks from './UserJobDescriptionsWithHooks'
 
-const UserInformation = (props) => {
+interface UserInformationPropsInterface {
+    profile: ProfileInterface,
+    userJob: string,
+    isOwner: boolean,
+    updateUserJob: (job: string) => void,
+
+}
+
+const UserInformation: FC<UserInformationPropsInterface> = (props) => {
     return (
         <div className={s.userInformation}>
             <div className={`${s.name} ${s.item}`}>{props.profile.fullName}</div>

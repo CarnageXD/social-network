@@ -4,11 +4,19 @@ import gridPhoto2 from './../../../../img/gridPhoto2.jpg'
 import gridPhoto3 from './../../../../img/gridPhoto3.png'
 import gridPhoto4 from './../../../../img/gridPhoto4.jpg'
 import s from './userPhotos.module.css'
+import { FC } from 'react'
+import { UserInterface } from '../../../../types/reducersTypes/friendsTypes'
 
-const UserPhotos = (props) => {
+interface UserPhotosPropsInterface {
+    saveAvatar: (file: File) => void,
+    isOwner: boolean,
+    profile: UserInterface,
+}
 
-    const onAvatarSelected = (e) => {
-        if (e.target.files.length) {
+const UserPhotos: FC<UserPhotosPropsInterface> = (props) => {
+
+    const onAvatarSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             props.saveAvatar(e.target.files[0])
         }
     }

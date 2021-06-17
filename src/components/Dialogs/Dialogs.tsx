@@ -1,28 +1,32 @@
 import Chats from './Chats/Chats'
 import s from './Dialogs.module.css'
 import ChatMessage from './ChatMessage/ChatMessage'
-import React, { useState } from "react"
+import React, { useState, FC } from "react"
+import { DialogsState } from '../../types/reducersTypes/dialogsTypes'
 
-const Dialogs = (props) => {
-    let state = props.dialogsPage
-    const [text, setText] = useState(state.newMessage.message)
+interface DialogsPropsInterface {
+    addMessage: (text: string) => void,
+    dialogsPage: DialogsState
+}
 
-    const handleKeyPress = (event) => {
+const Dialogs: FC<DialogsPropsInterface> = (props) => {
+    const [text, setText] = useState(props.dialogsPage.newMessage.message)
+
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            let text = event.target.value
-            props.handleKeyPress(text)
+            props.addMessage(text)
             setText('')
         }
     }
 
-    const updateMessageText = (event) => {
+    const updateMessageText = (event: React.ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value)
     }
 
     let chatElements =
-        state.chatData.map(chat => <Chats id={chat.id} avatar={chat.avatar} name={chat.name} lastMessage={chat.lastMessage} />)
+        props.dialogsPage.chatData.map(chat => <Chats id={chat.id} avatar={chat.avatar} name={chat.name} lastMessage={chat.lastMessage} />)
     let messagesElements =
-        state.messagesData.map(message => <ChatMessage message={message.message} avatar={message.avatar} messageTime={message.messageTime} />)
+        props.dialogsPage.messagesData.map(message => <ChatMessage message={message.message} avatar={message.avatar} messageTime={message.messageTime} />)
 
 
     return (

@@ -1,3 +1,4 @@
+import { Reducer } from "redux"
 import { ResultCodes } from "../components/api/api"
 import { profileAPI } from "../components/api/profile-api"
 import { ProfileActionTypes, ProfileInterface, ProfileState, UserPhotosInterface } from "../types/reducersTypes/profileTypes"
@@ -17,7 +18,7 @@ let initState = {
     photos: null,
 }
 
-export const profileReducer = (state = initState, action: ProfileActions): ProfileState => {
+export const profileReducer: Reducer<ProfileState, ProfileActions> = (state = initState, action) => {
     switch (action.type) {
         case ProfileActionTypes.ADD_POST:
             return {
@@ -56,8 +57,8 @@ export const profileReducer = (state = initState, action: ProfileActions): Profi
 
 
 export const actions = {
-    addPostActionCreator: () => ({ type: ProfileActionTypes.ADD_POST } as const),
-    updateNewPostTextActionCreator: (text: string) => ({ type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: text } as const),
+    addPost: () => ({ type: ProfileActionTypes.ADD_POST } as const),
+    updateNewPostText: (text: string) => ({ type: ProfileActionTypes.UPDATE_NEW_POST_TEXT, newText: text } as const),
     setUserProfile: (profile: ProfileInterface) => ({ type: ProfileActionTypes.SET_USER_PROFILE, profile } as const),
     setUserJob: (userJob: string) => ({ type: ProfileActionTypes.SET_USER_JOB, userJob } as const),
     deletePost: (postId: number) => ({ type: ProfileActionTypes.DELETE_POST, postId } as const),

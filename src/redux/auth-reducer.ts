@@ -1,3 +1,4 @@
+import { Reducer } from "redux"
 import { ResultCodes } from "../components/api/api"
 import { authAPI } from "../components/api/auth-api"
 import { securityAPI } from "../components/api/security-api"
@@ -14,7 +15,7 @@ let initState = {
     captchaUrl: null,
 }
 
-export const authReducer = (state = initState, action: AuthActions): AuthState => {
+export const authReducer: Reducer<AuthState, AuthActions> = (state = initState, action) => {
     switch (action.type) {
         case AuthActionTypes.SET_USER_DATA: {
             return {

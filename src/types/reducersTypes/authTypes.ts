@@ -9,7 +9,7 @@ export interface AuthState {
     email: string | null,
     login: string | null,
     isFetching: boolean | undefined,
-    isAuth: boolean,
+    isAuth: boolean
     authorizationError: boolean | null,
     captchaUrl: string | null,
 }

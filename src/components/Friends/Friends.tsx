@@ -22,7 +22,7 @@ const Friends: FC<FriendsPropsType> = ({ ...props }) => {
             {
                 props.isFetching ? <Preloader /> :
                     props.users.map((friend) =>
-                        <User key={friend.id} avatar={friend.photos.large} {...friend} userID={friend.id} {...props} />)
+                        <User key={friend.id} {...friend} userAvatar={friend.photos.large} userID={friend.id} {...props} />)
             }
             <div className={s.paginatorWrapper}>
                 <Paginator pageSize={props.pageSize} currentPage={props.currentPage} onPageChanged={props.onPageChanged} totalItemsCount={props.totalItemsCount} />

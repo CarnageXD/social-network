@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook } from "@fortawesome/free-brands-svg-icons"
 import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import { FC } from 'react';
+import { ContactsInterface, ProfileInterface } from '../../../../types/reducersTypes/profileTypes';
 
 
 
-
-
-const handleContactKey = (contact, contactURL) => {
+const handleContactKey = (contact: string, contactURL: string) => {
     switch (contact) {
         case "facebook":
             return <a href={`${contactURL}`} target='_blank' rel="noreferrer">
@@ -24,11 +24,16 @@ const handleContactKey = (contact, contactURL) => {
     }
 }
 
-const ContactMe = (props) => {
+interface ContactMePropsInterface {
+    profile: ProfileInterface
+}
+
+const ContactMe: FC<ContactMePropsInterface> = (props) => {
     return (
         <div className={s.contactMeWrapper}>
             {
-                Object.keys(props.profile.contacts).map(key => handleContactKey(key, props.profile.contacts[key]))
+                Object.keys(props.profile.contacts).map((key) =>
+                    handleContactKey(key, props.profile.contacts[key as keyof ContactsInterface]))
             }
         </div>
     )

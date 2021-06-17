@@ -1,6 +1,13 @@
+import { FC } from 'react'
 import s from './ChatMessage.module.css'
 
-const ChatMessage = (props) => {
+interface ChatMessageInterface {
+    avatar: string,
+    message: string,
+    messageTime: string,
+}
+
+const ChatMessage: FC<ChatMessageInterface> = (props) => {
     return (
         <div className={s.chatMessages}>
             <div className={s.senderInfo}>

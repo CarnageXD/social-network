@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import circleAvatar from './../../img/van-avatar.jpeg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import s from './Header.module.css'
 import { NavLink } from 'react-router-dom';
 
+interface HeaderPropsInterface {
+    isAuth: boolean,
+    login: string | null,
+    logout: () => void,
+}
 
-const Header = (props) => {
+const Header: FC<HeaderPropsInterface> = (props) => {
     const [triangle, setTriangle] = useState(false)
     return (
         <header className={s.header}>
@@ -23,7 +28,7 @@ const Header = (props) => {
                             className={s.userTriangle}><FontAwesomeIcon icon={faCaretDown} /></div>
                         {triangle
                             ?
-                            <ul tabIndex='1' onBlur={() => setTriangle(false)} className={s.dropdownMenu}>
+                            <ul onBlur={() => setTriangle(false)} className={s.dropdownMenu}>
                                 <li onClick={() => setTriangle((prev) => !prev)}>
                                     <NavLink to='/settings'>Account Settings</NavLink></li>
                                 <li onClick={() => {

@@ -15,7 +15,7 @@ export interface ProfileState {
     photos: null | UserPhotosInterface,
 }
 
-interface PostsInterface {
+export interface PostsInterface {
     id: number,
     message: string
 }
@@ -25,19 +25,19 @@ export interface ProfileInterface {
     lookingForAJob?: boolean | undefined,
     lookingForAJobDescription?: string | undefined,
     fullName: string,
-    contacts?: ContactsInterface | undefined,
+    contacts: ContactsInterface,
     photos?: UserPhotosInterface | null,
 }
 
 export interface ContactsInterface {
-    github?: string | undefined,
-    vk?: string | undefined,
-    facebook?: string | undefined,
-    instagram?: string | undefined,
-    twitter?: string | undefined,
-    website?: string | undefined,
-    youtube?: string | undefined,
-    mainLink?: string,
+    github: string,
+    vk: string,
+    facebook: string,
+    instagram: string,
+    twitter: string,
+    website: string,
+    youtube: string,
+    mainLink: string,
 }
 
 export interface UserPhotosInterface {

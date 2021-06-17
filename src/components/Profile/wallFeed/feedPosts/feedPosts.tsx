@@ -3,8 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { faComment } from "@fortawesome/free-solid-svg-icons";
 import s from './feedPosts.module.css'
+import { FC } from 'react';
 
-const FeedPosts = (props) => {
+interface FeedPostsPropsInterface {
+    message: string,
+}
+
+const FeedPosts: FC<FeedPostsPropsInterface> = (props) => {
     return (
         <div className={s.feedPost}>
             <div className={s.postAvatar}>

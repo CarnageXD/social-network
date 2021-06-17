@@ -1,8 +1,15 @@
 import s from './Chats.module.css'
 import { NavLink } from 'react-router-dom'
+import { FC } from 'react'
 
+interface ChatsPropsInterface {
+    id: number,
+    avatar: string,
+    name: string,
+    lastMessage: string,
+}
 
-const Chats = (props) => {
+const Chats: FC<ChatsPropsInterface> = (props) => {
     return (
         <NavLink to={`/dialogs/${props.id}`}>
             <div className={s.chat}>

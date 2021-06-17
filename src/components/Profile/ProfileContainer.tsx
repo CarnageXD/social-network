@@ -1,11 +1,26 @@
 import React from 'react'
 import Profile from './Profile';
 import { connect } from 'react-redux'
-import { getUserProfile, getUserJob, updateUserJob, saveAvatar } from './../../redux/profile-reducer'
-import { withRouter } from 'react-router-dom';
+import { getUserProfile, getUserJob, updateUserJob, saveAvatar } from '../../redux/profile-reducer'
+import { withRouter } from 'react-router'
 import { compose } from "redux"
+import { AppStateType } from '../../redux/redux-store';
+import { ProfileInterface } from '../../types/reducersTypes/profileTypes';
+import { RouteComponentProps } from 'react-router';
 
-class ProfileContainer extends React.Component {
+type MapStatePropsType = ReturnType<typeof mapStateToProps>
+
+type MapDispatchPropsType = {
+    getUserProfile: (userID: number) => void,
+    getUserJob: (userID: number) => void,
+    updateUserJob: (job: string) => void,
+    saveAvatar: (file: File) => void,
+
+}
+
+type PropsType = MapStatePropsType & MapDispatchPropsType
+
+class ProfileContainer extends React.Component<PropsType> {
     loadProfile() {
         let userID = this.props.match.params.userID
         if (!userID) {
@@ -20,7 +35,7 @@ class ProfileContainer extends React.Component {
         this.loadProfile()
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate(prevProps: PropsType, prevState: AppStateType) {
         if (prevProps.match.params.userID !== this.props.match.params.userID)
             this.loadProfile()
     }
@@ -30,7 +45,7 @@ class ProfileContainer extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType) => {
     return {
         profile: state.profilePage.profile,
         userJob: state.profilePage.userJob,

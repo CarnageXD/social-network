@@ -1,19 +1,25 @@
 import s from "./wallFeed.module.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-import React from "react"
 import FeedPosts from './feedPosts/feedPosts';
+import { FC } from "react";
+import { PostsInterface } from "../../../types/reducersTypes/profileTypes";
 
+interface WallFeedPropsInterface {
+    posts: PostsInterface[],
+    onAddPost: () => void,
+    onPostChange: (text: string) => void,
+    newPostText: string,
+}
 
-
-const WallFeed = (props) => {
-    const feed = props.posts.map(post => <FeedPosts id={post.id} message={post.message} />)
+const WallFeed: FC<WallFeedPropsInterface> = (props) => {
+    const feed = props.posts.map(post => <FeedPosts message={post.message} />)
 
     const addPost = () => {
         props.onAddPost()
     }
 
-    const onPostChange = (e) => {
+    const onPostChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let text = e.target.value
         props.onPostChange(text)
     }

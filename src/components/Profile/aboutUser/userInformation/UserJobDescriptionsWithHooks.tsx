@@ -1,9 +1,14 @@
 import s from './userInformation.module.css'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 
-const UserJobDescriptionWithHooks = (props) => {
-    const [editMode, setEditMode] = useState(false)
-    const [userJob, setUserJob] = useState(props.userJob)
+interface UserJobPropsInterface {
+    userJob: string,
+    updateUserJob: (userJob: string) => void,
+}
+
+const UserJobDescriptionWithHooks: FC<UserJobPropsInterface> = (props) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
+    const [userJob, setUserJob] = useState<string>(props.userJob)
 
     useEffect(() => {
         setUserJob(props.userJob)
@@ -19,7 +24,7 @@ const UserJobDescriptionWithHooks = (props) => {
         }
     }
 
-    const onUserJobChange = (e) => {
+    const onUserJobChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUserJob(e.currentTarget.value)
     }
     return (

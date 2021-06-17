@@ -1,17 +1,26 @@
 import s from './User.module.css'
 import circleAvatar1 from './../../../img/gridPhoto1.png'
 import { NavLink } from 'react-router-dom'
+import { FC } from 'react'
 
+type PropsType = {
+    userID: number,
+    followed: boolean,
+    isFollowingProgress: number[],
+    followUser: (userID: number, followed: boolean) => void,
+    unFollowUser: (userID: number, followed: boolean) => void,
+    name: string,
+    userAvatar: string | null,
+}
 
-
-const User = (props) => {
+const User: FC<PropsType> = (props) => {
     return (
         <div className={s.friendContainer}>
             <div className={s.user}>
                 <div className={s.aboutUser}>
                     <div className={s.userAvatar}>
                         <NavLink to={`/profile/${props.userID}`}>
-                            <img className={s.circleAvatar} src={props.avatar || circleAvatar1} alt='userAvatar'></img>
+                            <img className={s.circleAvatar} src={props.userAvatar || circleAvatar1} alt='userAvatar'></img>
                         </NavLink>
                     </div>
                     <div className={s.userInfo}>

@@ -5,6 +5,7 @@ import circleAvatar3 from './../img/ricardo.jpg'
 import circleAvatar4 from './../img/billy.jpg'
 import { DialogsActionTypes, DialogsState } from '../types/reducersTypes/dialogsTypes'
 import { InferActionTypes } from './redux-store'
+import { Reducer } from 'redux'
 
 let initState = {
     chatData: [
@@ -26,10 +27,10 @@ let initState = {
 }
 
 export const actions = {
-    addMessageActionCreator: (newMessageBody: string) => ({ type: DialogsActionTypes.ADD_MESSAGE, newMessageBody })
+    addMessage: (newMessageBody: string) => ({ type: DialogsActionTypes.ADD_MESSAGE, newMessageBody })
 }
 
-export const dialogsReducer = (state = initState, action: DialogsActions): DialogsState => {
+export const dialogsReducer: Reducer<DialogsState, DialogsActions> = (state = initState, action) => {
     switch (action.type) {
         case DialogsActionTypes.ADD_MESSAGE:
             let body = action.newMessageBody

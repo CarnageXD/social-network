@@ -66,4 +66,4 @@ const mapStateToProps = (state: AppStateType): FriendsMapStateToPropsInterface =
 
 export default compose(
     connect<FriendsMapStateToPropsInterface, FriendsMapDispatchToPropsInterface, {}, AppStateType>(mapStateToProps,
-        { requestUsers, followUser, unFollowUser }), withAuthRedirect)(FriendsContainerRequests)
+        { requestUsers, followUser, unFollowUser }), withAuthRedirect)(FriendsContainerRequests) as React.ComponentType
