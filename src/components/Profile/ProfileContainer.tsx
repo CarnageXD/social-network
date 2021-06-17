@@ -5,7 +5,6 @@ import { getUserProfile, getUserJob, updateUserJob, saveAvatar } from '../../red
 import { withRouter } from 'react-router'
 import { compose } from "redux"
 import { AppStateType } from '../../redux/redux-store';
-import { ProfileInterface } from '../../types/reducersTypes/profileTypes';
 import { RouteComponentProps } from 'react-router';
 
 type MapStatePropsType = ReturnType<typeof mapStateToProps>
@@ -18,7 +17,9 @@ type MapDispatchPropsType = {
 
 }
 
-type PropsType = MapStatePropsType & MapDispatchPropsType
+type RouteParamsProps = ReturnType<typeof RouteComponentProps>
+
+type PropsType = MapStatePropsType & MapDispatchPropsType & RouteParamsProps
 
 class ProfileContainer extends React.Component<PropsType> {
     loadProfile() {
@@ -53,4 +54,4 @@ const mapStateToProps = (state: AppStateType) => {
     }
 }
 
-export default compose(connect(mapStateToProps, { getUserProfile, getUserJob, updateUserJob, saveAvatar }), withRouter)(ProfileContainer)
+export default compose<React.ComponentType>(connect(mapStateToProps, { getUserProfile, getUserJob, updateUserJob, saveAvatar }), withRouter)(ProfileContainer)
