@@ -5,12 +5,12 @@ import gridPhoto3 from './../../../../img/gridPhoto3.png'
 import gridPhoto4 from './../../../../img/gridPhoto4.jpg'
 import s from './userPhotos.module.css'
 import { FC } from 'react'
-import { UserInterface } from '../../../../types/reducersTypes/friendsTypes'
+import { ProfileInterface } from '../../../../types/reducersTypes/profileTypes'
 
 interface UserPhotosPropsInterface {
     saveAvatar: (file: File) => void,
     isOwner: boolean,
-    profile: UserInterface,
+    profile: ProfileInterface,
 }
 
 const UserPhotos: FC<UserPhotosPropsInterface> = (props) => {

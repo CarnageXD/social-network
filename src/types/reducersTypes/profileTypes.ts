@@ -26,7 +26,7 @@ export interface ProfileInterface {
     lookingForAJobDescription?: string | undefined,
     fullName: string,
     contacts: ContactsInterface,
-    photos?: UserPhotosInterface | null,
+    photos: UserPhotosInterface,
 }
 
 export interface ContactsInterface {

@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Playlist from './components/Playlist/Playlist';
 import Settings from './components/Settings/Settings';
 import { Redirect, Route, Switch } from 'react-router-dom'
-import FriendsContainer from './components/Friends/FriendsContainer';
+import { FriendsPage } from './components/Friends/FriendsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
@@ -48,7 +48,7 @@ class App extends React.Component<AppProps> {
           <Switch>
             <Route exact path='/first-project' render={() => <Redirect from='/' to='/profile' />} />
             <Route path='/profile/:userID?' render={() => <SuspendedProfile />} />
-            <Route path='/friends' render={() => <FriendsContainer />} />
+            <Route path='/friends' render={() => <FriendsPage />} />
             <Route path='/dialogs' render={() => <SuspendedDialogs />} />
             <Route path='/playlist' component={Playlist} />
             <Route path='/settings' component={Settings} />

@@ -32,6 +32,7 @@ export const profileReducer: Reducer<ProfileState, ProfileActions> = (state = in
                 newPostText: action.newText
             }
         case ProfileActionTypes.SET_USER_PROFILE:
+            debugger
             return {
                 ...state,
                 profile: action.profile,
@@ -89,7 +90,7 @@ export const updateUserJob = (userJob: string): ThunkType => async (dispatch) =>
     }
 }
 
-export const saveAvatar = (avatarFile: string): ThunkType => async (dispatch) => {
+export const saveAvatar = (avatarFile: File): ThunkType => async (dispatch) => {
     const response = await profileAPI.saveAvatarPhoto(avatarFile)
     if (response.data.resultCode === 0) {
         dispatch(actions.setUserAvatar(response.data.data.photos))

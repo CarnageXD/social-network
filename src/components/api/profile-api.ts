@@ -15,7 +15,7 @@ export const profileAPI = {
     updateUserJob(userJob: string) {
         return axiosInstance.put<APIResponseType>(`profile/status`, { status: userJob }).then(response => response.data)
     },
-    saveAvatarPhoto(avatarFile: string) {
+    saveAvatarPhoto(avatarFile: File) {
         const formData = new FormData()
         formData.append("image", avatarFile)
         return axiosInstance.put<APIResponseType<SavePhotoResponse>>(`profile/photo`, formData, { headers: { 'Content-Type': 'multipart/form-data' } })

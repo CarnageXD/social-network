@@ -6,7 +6,8 @@ import { ProfileInterface } from '../../../types/reducersTypes/profileTypes'
 import { UserInterface } from '../../../types/reducersTypes/friendsTypes'
 
 interface AboutUserPropsInterface {
-    profile: UserInterface & ProfileInterface,
+    photosProfile: ProfileInterface,
+    infoProfile: ProfileInterface
     isOwner: boolean,
     saveAvatar: (file: File) => void,
     userJob: string,
@@ -16,8 +17,8 @@ interface AboutUserPropsInterface {
 const aboutUser: FC<AboutUserPropsInterface> = (props) => {
     return (
         <div className={s.aboutUser}>
-            <UserPhotos profile={props.profile} isOwner={props.isOwner} saveAvatar={props.saveAvatar} />
-            <UserInformation profile={props.profile} userJob={props.userJob} updateUserJob={props.updateUserJob} isOwner={props.isOwner} />
+            <UserPhotos profile={props.photosProfile} isOwner={props.isOwner} saveAvatar={props.saveAvatar} />
+            <UserInformation profile={props.infoProfile} userJob={props.userJob} updateUserJob={props.updateUserJob} isOwner={props.isOwner} />
         </div>
     )
 }

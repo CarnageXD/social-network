@@ -2,26 +2,23 @@ import s from './Login.module.css'
 import { validateForm } from './validateForm'
 import { useForm } from 'react-hook-form'
 import { login } from '../../redux/auth-reducer'
-import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 
-const mapStateToProps = (state) => {
-    return ({
-        captchaUrl: state.auth.captchaUrl,
-        isAuth: state.auth.isAuth,
-        authorizationError: state.auth.authorizationError,
-    })
-}
+const LoginForm = () => {
+    const { register, handleSubmit, errors, reset } = useForm()
+    const dispatch = useDispatch()
+    const captchaUrl = useSelector(state => state.auth.captchaUrl)
+    const isAuth = useSelector(state => state.auth.isAuth)
+    const authorizationError = useSelector(state => state.auth.authorizationError)
 
-const LoginForm = connect(mapStateToProps, { login })((props) => {
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'} />
     }
-    const { register, handleSubmit, errors, reset } = useForm()
 
     const onSubmit = (data) => {
         reset()
-        props.login(data.email, data.password, data.rememberMe, data.captcha)
+        dispatch(login(data.email, data.password, data.rememberMe, data.captcha))
     }
     return (
         <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)}>
@@ -41,22 +38,22 @@ const LoginForm = connect(mapStateToProps, { login })((props) => {
                 <label htmlFor="rememberMe">Remember me </label>
                 <input type="checkbox" id="rememberMe" ref={register} name='rememberMe' />
             </div>
-            {props.captchaUrl ?
+            {captchaUrl ?
                 <div className={s.itemForm}>
-                    <img src={props.captchaUrl} alt='captcha'></img>
+                    <img src={captchaUrl} alt='captcha'></img>
                     <input ref={register} id="captcha" name="captcha" className={s.captchaInput}></input>
                 </div>
                 : null}
             <div className={s.itemForm}>
                 <input type="submit" value='Submit' />
             </div>
-            {props.authorizationError === null ? null : <p>Invalid email or password</p>}
+            {authorizationError === null ? null : <p>Invalid email or password</p>}
         </form>
     )
 }
-)
 
 const Login = (props) => {
+
     return (
         <div className={s.loginWrapper}>
             <h1>Login</h1>
