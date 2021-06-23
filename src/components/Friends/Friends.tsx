@@ -2,9 +2,9 @@ import s from './Friends.module.css'
 import Paginator from '../common/paginator/Paginator'
 import User from './User/User'
 import Preloader from '../common/preloader/Preloader'
-import { FC, useEffect } from 'react'
+import React, { FC, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentPage, getIsFetching, getIsFollowingProgress, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors'
+import { getCurrentPage, getFilter, getIsFetching, getIsFollowingProgress, getPageSize, getTotalUsersCount, getUsers } from '../../redux/users-selectors'
 import { requestUsers, followUser, unFollowUser } from '../../redux/friends-reducer'
 import { useHistory } from 'react-router-dom'
 
@@ -19,16 +19,28 @@ export const Friends: FC<FriendsPropsType> = ({ ...props }) => {
     const currentPage = useSelector(getCurrentPage)
     const isFollowingProgress = useSelector(getIsFollowingProgress)
     const isFetching = useSelector(getIsFetching)
+    const filter = useSelector(getFilter)
 
     const history = useHistory()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(requestUsers(currentPage, pageSize))
+        history.push({
+            pathname: '/friends',
+            search: `?friend=${filter}&currentPage=${currentPage}`
+        })
+    }, [filter, currentPage])
+
+    useEffect(() => {
+        dispatch(requestUsers(currentPage, pageSize, filter))
     }, [currentPage])
 
     const onPageChanged = (pageNumber: number) => {
-        dispatch(requestUsers(pageNumber, pageSize))
+        dispatch(requestUsers(pageNumber, pageSize, filter))
+    }
+
+    const onFilterChanged = (filter: boolean | null) => {
+        dispatch(requestUsers(currentPage, pageSize, filter))
     }
 
     const follow = (userID: number, followed: boolean) => {
@@ -41,6 +53,28 @@ export const Friends: FC<FriendsPropsType> = ({ ...props }) => {
 
     return (
         <div className={s.friendsWrapper}>
+            <div className={s.filter}>
+                <span className={s.filterTitle}>Filter: </span>
+                <select onChange={useMemo(() => (e: React.ChangeEvent<HTMLSelectElement>) => {
+                    let filterChanged = null;
+                    switch (e.target.value) {
+                        case 'followed': {
+                            filterChanged = true;
+                            break;
+                        }
+                        case 'unfollowed': {
+                            filterChanged = false;
+                            break;
+                        }
+                        default: filterChanged = null;
+                    }
+                    onFilterChanged(filterChanged)
+                }, [filter])}>
+                    <option selected value="all">All</option>
+                    <option value="followed">Only followed</option>
+                    <option value="unfollowed">Only unfollowed</option>
+                </select>
+            </div>
             {
                 isFetching ? <Preloader /> :
                     users.map((friend) =>

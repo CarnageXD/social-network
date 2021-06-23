@@ -9,6 +9,10 @@ export const getUsers = createSelector(getUsersSelector, (users) => {
     return users.filter(u => true)
 })
 
+export const getFilter = (state: AppStateType) => {
+    return state.friendsPage.filter
+}
+
 export const getPageSize = (state: AppStateType) => {
     return state.friendsPage.pageSize
 }

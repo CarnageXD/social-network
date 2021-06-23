@@ -2,3 +2,15 @@
     padding: 1rem;
     height: 90%;    
 }
+
+.filter {
+    display: flex;
+    align-items: center;
+}
+
+.filterTitle {
+    margin-right: .6rem;
+    color: #3274a0;
+    font-size: 1.3rem;
+    line-height: 30px;
+}

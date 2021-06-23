@@ -8,8 +8,8 @@ interface GetUsersInterface {
 }
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
-        return axiosInstance.get<GetUsersInterface>(`users?page=${currentPage}&count=${pageSize}`).then(response => response.data)
+    getUsers(currentPage = 1, pageSize = 10, filter: boolean | null = null) {
+        return axiosInstance.get<GetUsersInterface>(`users?page=${currentPage}&count=${pageSize}&friend=${filter}`).then(response => response.data)
     },
     unFollowUser(userID: number) {
         return axiosInstance.delete<APIResponseType>(`follow/${userID}`).then(response => response.data)

@@ -3,8 +3,6 @@ import s from './Profile.module.css'
 import WallFeedContainer from './wallFeed/WallFeedContainer';
 import Preloader from '../common/preloader/Preloader'
 import { FC, useEffect } from 'react';
-import { ProfileInterface } from '../../types/reducersTypes/profileTypes';
-import { UserInterface } from '../../types/reducersTypes/friendsTypes';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppStateType } from '../../redux/redux-store';

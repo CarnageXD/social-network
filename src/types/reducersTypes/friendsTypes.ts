@@ -7,6 +7,7 @@ export enum FriendsActionTypes {
     SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT',
     TOGGLE_IS_FRIENDS_FETCHING = 'TOGGLE_IS_FRIENDS_FETCHING',
     TOGGLE_IS_FOLLOWING_PROGRESS = 'TOGGLE_IS_FOLLOWING_PROGRESS',
+    SET_FILTER = 'SET_FILTER',
 }
 
 export interface FriendsState {
@@ -15,7 +16,8 @@ export interface FriendsState {
     totalItemsCount: number,
     currentPage: number,
     isFetching: boolean,
-    isFollowingProgress: Array<number>
+    isFollowingProgress: Array<number>,
+    filter: boolean | null,
 }
 
 export interface UserInterface {

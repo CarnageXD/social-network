@@ -10,12 +10,16 @@ let initState = {
     currentPage: 1,
     isFetching: true,
     isFollowingProgress: [] as Array<number>,
+    filter: null,
 }
 
 export const friendsReducer: Reducer<FriendsState, FriendsActions> = (state = initState, action) => {
     switch (action.type) {
         case FriendsActionTypes.SET_USERS: {
             return { ...state, users: [...action.users] }
+        }
+        case FriendsActionTypes.SET_FILTER: {
+            return { ...state, filter: action.filter }
         }
         case FriendsActionTypes.SET_CURRENT_PAGE: {
             return {
@@ -56,6 +60,7 @@ export const friendsReducer: Reducer<FriendsState, FriendsActions> = (state = in
 }
 
 const actions = {
+    setFilter: (filter: boolean | null) => ({ type: FriendsActionTypes.SET_FILTER, filter } as const),
     setUsers: (users: UserInterface[]) => ({ type: FriendsActionTypes.SET_USERS, users } as const),
     setCurrentPage: (currentPage: number) => ({ type: FriendsActionTypes.SET_CURRENT_PAGE, currentPage } as const),
     setTotalUsersCount: (totalCount: number) => ({ type: FriendsActionTypes.SET_TOTAL_USERS_COUNT, totalCount } as const),
@@ -66,10 +71,11 @@ const actions = {
     onFollow: (userID: number, followed: boolean) => ({ type: FriendsActionTypes.FOLLOW_USER, followed, id: userID } as const),
 }
 
-export const requestUsers = (page: number, pageSize: number): ThunkType => async (dispatch) => {
+export const requestUsers = (page: number, pageSize: number, filter: boolean | null): ThunkType => async (dispatch) => {
     dispatch(actions.toggleIsFriendsFetching(true))
     dispatch(actions.setCurrentPage(page))
-    const data = await usersAPI.getUsers(page, pageSize)
+    dispatch(actions.setFilter(filter))
+    const data = await usersAPI.getUsers(page, pageSize, filter)
     dispatch(actions.setUsers(data.items))
     dispatch(actions.setTotalUsersCount(data.totalCount))
     dispatch(actions.toggleIsFriendsFetching(false))
