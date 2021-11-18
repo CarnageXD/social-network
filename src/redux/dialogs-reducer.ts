@@ -1,21 +1,21 @@
 import circleAvatar from './../img/van-avatar.jpeg'
-import circleAvatar1 from './../img/brad.png'
-import circleAvatar2 from './../img/steve.jpg'
-import circleAvatar3 from './../img/ricardo.jpg'
-import circleAvatar4 from './../img/billy.jpg'
+import circleAvatar1 from './../img/gridPhoto1.png'
+import circleAvatar2 from './../img/gridPhoto2.png'
+import circleAvatar3 from './../img/gridPhoto3.png'
+import circleAvatar4 from './../img/gridPhoto4.jpg'
 import { DialogsActionTypes, DialogsState } from '../types/reducersTypes/dialogsTypes'
 import { InferActionTypes } from './redux-store'
 import { Reducer } from 'redux'
 
 let initState = {
     chatData: [
-        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'See you in deep dark fantasies' },
-        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'See you in deep dark fantasies' },
-        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'See you in deep dark fantasies' },
-        { id: 2, avatar: circleAvatar2, name: 'Steve', lastMessage: 'Hello dude' },
-        { id: 3, avatar: circleAvatar3, name: 'Ricardo', lastMessage: 'Last night was awesome' },
-        { id: 4, avatar: circleAvatar4, name: 'Billy', lastMessage: 'So, when (van) you are going to gym?' },
-        { id: 5, avatar: circleAvatar, name: 'Van', lastMessage: 'Saved messages' }
+        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'Hello every one guys' },
+        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'Hello every one guys' },
+        { id: 1, avatar: circleAvatar1, name: 'Brad', lastMessage: 'Hello every one guys' },
+        { id: 2, avatar: circleAvatar2, name: 'Steve', lastMessage: 'How are you doing?' },
+        { id: 3, avatar: circleAvatar3, name: 'Ricardo', lastMessage: 'Lets dance and have fun' },
+        { id: 4, avatar: circleAvatar4, name: 'Billy', lastMessage: 'So, when you are going to gym?' },
+        { id: 5, avatar: circleAvatar, name: 'Saved messages', lastMessage: 'Secret info' }
     ],
     messagesData: [
         { id: 1, message: 'Hello, Billy', avatar: circleAvatar, messageTime: "11:44PM" },

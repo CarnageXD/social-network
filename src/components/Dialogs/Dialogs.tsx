@@ -2,19 +2,56 @@ import Chats from './Chats/Chats'
 import s from './Dialogs.module.css'
 import ChatMessage from './ChatMessage/ChatMessage'
 import React, { useState, FC } from "react"
-import { DialogsState } from '../../types/reducersTypes/dialogsTypes'
+import { useSelector } from 'react-redux'
+import { AppStateType } from '../../redux/redux-store'
+import { useEffect } from 'react'
+
+const ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx')
 
 interface DialogsPropsInterface {
-    addMessage: (text: string) => void,
-    dialogsPage: DialogsState
+
+}
+
+export interface ChatMessageInterface {
+    photo: string,
+    message: string,
 }
 
 const Dialogs: FC<DialogsPropsInterface> = (props) => {
-    const [text, setText] = useState(props.dialogsPage.newMessage.message)
+    const dialogsPage = useSelector((state: AppStateType) => state.dialogsPage)
+    const [text, setText] = useState(dialogsPage.newMessage.message)
+    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
+    const [messages, setMessages] = useState<ChatMessageInterface[]>([])
 
+    useEffect(() => {
+        ws.addEventListener('message', (e: MessageEvent) => {
+            setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)])
+        })
+        return (() => {
+            debugger
+            ws.removeEventListener('message', (e: MessageEvent) => {
+                setMessages((prevMessages) => [...prevMessages, ...JSON.parse(e.data)])
+            })
+        })
+    }, [])
+
+    useEffect(() => {
+        ws.addEventListener('open', () => {
+            setReadyStatus('ready')
+        })
+    }, [readyStatus])
+
+    ws.addEventListener('close', () => {
+        console.log('closed')
+        setReadyStatus('pending')
+    })
+
+    const addMessage = (text: string) => {
+        ws.send(text)
+    }
     const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            props.addMessage(text)
+            addMessage(text)
             setText('')
         }
     }
@@ -24,9 +61,9 @@ const Dialogs: FC<DialogsPropsInterface> = (props) => {
     }
 
     let chatElements =
-        props.dialogsPage.chatData.map(chat => <Chats id={chat.id} avatar={chat.avatar} name={chat.name} lastMessage={chat.lastMessage} />)
+        dialogsPage.chatData.map(chat => <Chats id={chat.id} avatar={chat.avatar} name={chat.name} lastMessage={chat.lastMessage} />)
     let messagesElements =
-        props.dialogsPage.messagesData.map(message => <ChatMessage message={message.message} avatar={message.avatar} messageTime={message.messageTime} />)
+        messages.map((message, index) => <ChatMessage message={message.message} photo={message.photo} key={index} />)
 
 
     return (
@@ -36,9 +73,9 @@ const Dialogs: FC<DialogsPropsInterface> = (props) => {
             </div>
             <div className={s.messages}>
                 <div className={s.messagesContainer}>
-                    {messagesElements}
+                    <div style={{ overflow: 'auto' }}>{messagesElements}</div>
                     <div className={s.chatBlock}>
-                        <input onChange={updateMessageText} onKeyPress={handleKeyPress} placeholder='Enter a text to send...' className={s.chatInput} type='text' value={text}></input>
+                        <input disabled={readyStatus !== 'ready'} onChange={updateMessageText} onKeyPress={handleKeyPress} placeholder='Enter a text to send...' className={s.chatInput} type='text' value={text}></input>
                     </div>
                 </div>
             </div>

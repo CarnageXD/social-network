@@ -10,8 +10,8 @@ let initState = {
         { id: 5, message: 'hello' },
         { id: 4, message: 'Niko niko' },
         { id: 3, message: 'In three weeks,  i’m going to visit Iceland, it’ll be awesome!' },
-        { id: 2, message: 'A minute ago met angry dude in locker, had to destroy his underpants' },
-        { id: 1, message: 'Hello, ima new in dungeon!' },
+        { id: 2, message: 'A minute ago met angry dude in locker, have to fight with him' },
+        { id: 1, message: 'Hello, ima new in gym!' },
     ],
     newPostText: '',
     userJob: '',
@@ -32,7 +32,6 @@ export const profileReducer: Reducer<ProfileState, ProfileActions> = (state = in
                 newPostText: action.newText
             }
         case ProfileActionTypes.SET_USER_PROFILE:
-            debugger
             return {
                 ...state,
                 profile: action.profile,

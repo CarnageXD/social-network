@@ -1,6 +1,6 @@
-import circleAvatar1 from './../img/brad.png'
-import circleAvatar3 from './../img/ricardo.jpg'
-import circleAvatar4 from './../img/billy.jpg'
+import circleAvatar1 from './../img/gridPhoto1.png'
+import circleAvatar3 from './../img/gridPhoto2.png'
+import circleAvatar4 from './../img/gridPhoto3.png'
 import { InferActionTypes } from './redux-store'
 
 let initState = {
